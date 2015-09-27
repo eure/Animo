@@ -95,11 +95,11 @@ class ViewController: UIViewController {
                         options: Options(timingMode: .EaseInOutBack)
                     ),
                     Animate.scaleBy(
-                        xScale: 0.5, yScale: 2.5,
+                        xScale: 2, yScale: 0.5,
                         duration: 1,
                         options: Options(timingMode: .EaseInOutBack)
                     ),
-                    Animate.wait(3),
+                    Animate.wait(1),
                     Animate.moveTo(
                         .zero,
                         duration: 2,
@@ -111,7 +111,7 @@ class ViewController: UIViewController {
                         options: Options(timingMode: .EaseInOutBack)
                     ),
                     Animate.scaleTo(
-                        1,
+                        xScale: 1, yScale: 1,
                         duration: 1,
                         options: Options(timingMode: .EaseInOutBack)
                     )
