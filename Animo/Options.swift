@@ -114,7 +114,12 @@ public struct Options {
         object.autoreverses = self.autoreverses
         object.fillMode = self.fillMode
         object.removedOnCompletion = self.removedOnCompletion
-        if object.autoreverses {
+        
+        if duration.isInfinite {
+            
+            object.duration = DBL_MAX // TODO: duration?
+        }
+        else if object.autoreverses {
             
             object.duration = duration / 2.0
         }

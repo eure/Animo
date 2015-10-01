@@ -372,6 +372,7 @@
 				B5687D981BB6F0A700168B7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

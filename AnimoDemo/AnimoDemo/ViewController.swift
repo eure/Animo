@@ -21,7 +21,7 @@ class ViewController: UIViewController {
                     Animate.rotateBy(
                         degrees: 360,
                         duration: 1.5,
-                        options: Options(repeatMode: .RepeatForever)
+                        options: Options(repeatMode: .RepeatCount(2))
                     ),
                     Animate.sequence(
                         [
@@ -72,11 +72,11 @@ class ViewController: UIViewController {
                                 duration: 1,
                                 options: Options(timingMode: .EaseInOut)
                             )
-                        ],
-                        options: Options(repeatMode: .RepeatForever, speed: 2)
+                        ]
                     )
                 ],
-                duration: 4,
+                normalizeDurations: true,
+                duration: 5,
                 options: Options(repeatMode: .RepeatForever)
             )
         )
@@ -84,41 +84,46 @@ class ViewController: UIViewController {
         self.squareView2?.layer.runAnimation(
             Animate.sequence(
                 [
-                    Animate.moveTo(
-                        CGPoint(x: 100, y: 200),
-                        duration: 2,
-                        options: Options(timingMode: .EaseInOutBack)
-                    ),
-                    Animate.rotateBy(
-                        degrees: -180,
-                        duration: 1,
-                        options: Options(timingMode: .EaseInOutBack)
-                    ),
-                    Animate.scaleBy(
-                        xScale: 2, yScale: 0.5,
-                        duration: 1,
-                        options: Options(timingMode: .EaseInOutBack)
-                    ),
                     Animate.wait(1),
-                    Animate.moveTo(
-                        .zero,
-                        duration: 2,
-                        options: Options(timingMode: .EaseInOutBack)
-                    ),
-                    Animate.rotateBy(
-                        degrees: 180,
-                        duration: 1,
-                        options: Options(timingMode: .EaseInOutBack)
-                    ),
-                    Animate.scaleTo(
-                        xScale: 1, yScale: 1,
-                        duration: 1,
-                        options: Options(timingMode: .EaseInOutBack)
+                    Animate.sequence(
+                        [
+                            Animate.moveBy(
+                                CGPoint(x: 100, y: 200),
+                                duration: 2,
+                                options: Options(timingMode: .EaseInOutBack)
+                            ),
+                            Animate.rotateBy(
+                                degrees: -180,
+                                duration: 1,
+                                options: Options(timingMode: .EaseInOutBack)
+                            ),
+                            Animate.scaleBy(
+                                xScale: 2, yScale: 0.5,
+                                duration: 1,
+                                options: Options(timingMode: .EaseInOutBack)
+                            ),
+                            Animate.wait(1),
+                            Animate.moveBy(
+                                CGPoint(x: -100, y: -200),
+                                duration: 2,
+                                options: Options(timingMode: .EaseInOutBack)
+                            ),
+                            Animate.rotateBy(
+                                degrees: 180,
+                                duration: 1,
+                                options: Options(timingMode: .EaseInOutBack)
+                            ),
+                            Animate.scaleTo(
+                                xScale: 1, yScale: 1,
+                                duration: 1,
+                                options: Options(timingMode: .EaseInOutBack)
+                            )
+                        ],
+                        options: Options(
+                            repeatMode: .RepeatForever
+                        )
                     )
-                ],
-                options: Options(
-                    repeatMode: .RepeatForever
-                )
+                ]
             )
         )
     }

@@ -15,20 +15,25 @@ public struct Animate {
     
     // MARK: Grouping
     
-    public static func group(animations: [LayerAnimation], duration: NSTimeInterval? = nil, options: Options = .Default) -> LayerAnimation {
-        
-        let baseDuration = animations.reduce(0) { max($0, $1.accumulatedDuration) }
+    public static func group(animations: [LayerAnimation], normalizeDurations: Bool = false, duration: NSTimeInterval? = nil, options: Options = .Default) -> LayerAnimation {
         
         let actualDuration: NSTimeInterval
-        if let duration = duration where duration != 0 {
+        switch (normalizeDurations, duration) {
             
+        case (true, let duration?) where duration != 0:
+            let baseDuration = animations.reduce(0) { max($0, $1.baseDuration) }
             let factor = Float(baseDuration / duration)
             animations.forEach { $0.object.speed *= factor }
             
             actualDuration = duration
-        }
-        else {
             
+        case (true, _):
+            actualDuration = baseDuration
+            
+        case (false, let duration?):
+            actualDuration = duration
+            
+        case (false, nil):
             actualDuration = baseDuration
         }
         
@@ -42,27 +47,47 @@ public struct Animate {
     
     // MARK: Sequencing
     
-    public static func sequence(animations: [LayerAnimation], duration: NSTimeInterval? = nil, options: Options = .Default) -> LayerAnimation {
+    public static func sequence(animations: [LayerAnimation], normalizeDurations: Bool = false, duration: NSTimeInterval? = nil, options: Options = .Default) -> LayerAnimation {
         
         let actualDuration: NSTimeInterval
-        if let duration = duration where duration != 0 {
+        switch (normalizeDurations, duration) {
             
-            let baseDuration = animations.reduce(0) { $0 + $1.accumulatedDuration }
+        case (true, let duration?) where duration != 0:
+            let baseDuration = animations.reduce(0) { $0 + $1.baseDuration }
             let factor = Float(baseDuration / duration)
             animations.forEach { $0.object.speed *= factor }
             
+//            _ = animations.reduce(0 as NSTimeInterval) {
+//                
+//                $1.object.beginTime += $0
+//                return $0 + $1.baseDuration
+//            }
             actualDuration = animations.reduce(0 as NSTimeInterval) {
+                
+                $1.object.beginTime += $0
+                return $0 + $1.baseDuration
+            }
+            
+        case (true, _):
+            actualDuration = animations.reduce(0 as NSTimeInterval) {
+                
+                $1.object.beginTime += $0
+                return $0 + $1.baseDuration
+            }
+            
+        case (false, let duration?):
+            actualDuration = duration
+            _ = animations.reduce(0 as NSTimeInterval) {
                 
                 $1.object.beginTime += $0
                 return $0 + $1.accumulatedDuration
             }
-        }
-        else {
             
+        case (false, nil):
             actualDuration = animations.reduce(0 as NSTimeInterval) {
                 
                 $1.object.beginTime += $0
-                return $0 + $1.accumulatedDuration
+                return $0 + $1.baseDuration
             }
         }
         
@@ -87,49 +112,49 @@ public struct Animate {
     
     // MARK: Translating
     
-    public static func moveBy(delta: CGVector, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
+    public static func moveBy(by: CGPoint, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
         
-        return self.property(LayerKeyPath.translation, by: delta, duration: duration, options: options)
+        return self.property(LayerKeyPath.position, by: by, duration: duration, options: options)
     }
     
-    public static func moveBy(dx dx: CGFloat, dy: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
+    public static func moveBy(x x: CGFloat, y: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
         
-        return self.property(LayerKeyPath.translation, by: CGVector(dx: dx, dy: dy), duration: duration, options: options)
+        return self.property(LayerKeyPath.position, by: CGPoint(x: x, y: y), duration: duration, options: options)
     }
     
     public static func moveXBy(dx: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
         
-        return self.property(LayerKeyPath.translationX, by: dx, duration: duration, options: options)
+        return self.property(LayerKeyPath.positionX, by: dx, duration: duration, options: options)
     }
     
     public static func moveYBy(dy: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
         
-        return self.property(LayerKeyPath.translationX, by: dy, duration: duration, options: options)
+        return self.property(LayerKeyPath.positionY, by: dy, duration: duration, options: options)
     }
     
     public static func moveTo(location: CGPoint, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
         
-        return self.property(LayerKeyPath.translation, to: location, duration: duration, options: options)
+        return self.property(LayerKeyPath.position, to: location, duration: duration, options: options)
     }
     
     public static func moveTo(x x: CGFloat, y: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
         
-        return self.property(LayerKeyPath.translation, to: CGPoint(x: x, y: y), duration: duration, options: options)
+        return self.property(LayerKeyPath.position, to: CGPoint(x: x, y: y), duration: duration, options: options)
     }
     
-    public static func moveXTo(x: CGFloat, by: CGPoint, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
+    public static func moveXTo(x: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
         
-        return self.property(LayerKeyPath.translation, to: x, duration: duration, options: options)
+        return self.property(LayerKeyPath.positionX, to: x, duration: duration, options: options)
     }
     
     public static func moveYTo(y: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
         
-        return self.property(LayerKeyPath.translation, to: y, duration: duration, options: options)
+        return self.property(LayerKeyPath.positionY, to: y, duration: duration, options: options)
     }
     
     public static func moveAlong(path: UIBezierPath, keyTimes: [NSTimeInterval]? = nil, interpolationOptions: [Options]? = nil, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
         
-        let object = CAKeyframeAnimation(keyPath: LayerKeyPath.translation)
+        let object = CAKeyframeAnimation(keyPath: LayerKeyPath.position)
         object.path = path.CGPath
         object.keyTimes = keyTimes?.map { $0.valueForAnimationKeyframe }
         object.timingFunctions = interpolationOptions?.map { $0.timingMode.timingFunction }
@@ -263,6 +288,9 @@ public struct Animate {
     
     private enum LayerKeyPath {
         
+        static let position = "position"
+        static let positionX = "position.x"
+        static let positionY = "position.y"
         static let translation = "transform.translation"
         static let translationX = "transform.translation.x"
         static let translationY = "transform.translation.y"
@@ -283,5 +311,43 @@ public struct Animate {
         options.applyTo(object, duration: duration)
         
         return LayerAnimation(object)
+    }
+}
+
+
+private extension NSTimeInterval {
+    
+    mutating func addClamped(addend: NSTimeInterval) {
+        
+        guard !self.isInfinite else {
+            
+            return
+        }
+        
+        if addend.isInfinite {
+            
+            self = addend
+        }
+        else {
+            
+            self += addend
+        }
+    }
+    
+    func sumClamped(addend: NSTimeInterval) -> NSTimeInterval {
+        
+        guard !self.isInfinite else {
+            
+            return self
+        }
+        
+        if addend.isInfinite {
+            
+            return addend
+        }
+        else {
+            
+            return self + addend
+        }
     }
 }
