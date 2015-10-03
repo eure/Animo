@@ -15,87 +15,17 @@ public struct Animate {
     
     // MARK: Grouping
     
-    public static func group(animations: [LayerAnimation], normalizeDurations: Bool = false, duration: NSTimeInterval? = nil, options: Options = .Default) -> LayerAnimation {
+    public static func group(animations: [LayerAnimation], span: DurationSpan = .Automatic, options: Options = .Default) -> LayerAnimation {
         
-        let actualDuration: NSTimeInterval
-        switch (normalizeDurations, duration) {
-            
-        case (true, let duration?) where duration != 0:
-            let baseDuration = animations.reduce(0) { max($0, $1.baseDuration) }
-            let factor = Float(baseDuration / duration)
-            animations.forEach { $0.object.speed *= factor }
-            
-            actualDuration = duration
-            
-        case (true, _):
-            actualDuration = baseDuration
-            
-        case (false, let duration?):
-            actualDuration = duration
-            
-        case (false, nil):
-            actualDuration = baseDuration
-        }
-        
-        let object = CAAnimationGroup()
-        object.animations = animations.map { $0.object }
-        options.applyTo(object, duration: actualDuration)
-        
-        return LayerAnimation(object)
+        return options.applyTo(group: CAAnimationGroup(), children: animations, span: span)
     }
     
     
     // MARK: Sequencing
     
-    public static func sequence(animations: [LayerAnimation], normalizeDurations: Bool = false, duration: NSTimeInterval? = nil, options: Options = .Default) -> LayerAnimation {
+    public static func sequence(animations: [LayerAnimation], span: DurationSpan = .Automatic, options: Options = .Default) -> LayerAnimation {
         
-        let actualDuration: NSTimeInterval
-        switch (normalizeDurations, duration) {
-            
-        case (true, let duration?) where duration != 0:
-            let baseDuration = animations.reduce(0) { $0 + $1.baseDuration }
-            let factor = Float(baseDuration / duration)
-            animations.forEach { $0.object.speed *= factor }
-            
-//            _ = animations.reduce(0 as NSTimeInterval) {
-//                
-//                $1.object.beginTime += $0
-//                return $0 + $1.baseDuration
-//            }
-            actualDuration = animations.reduce(0 as NSTimeInterval) {
-                
-                $1.object.beginTime += $0
-                return $0 + $1.baseDuration
-            }
-            
-        case (true, _):
-            actualDuration = animations.reduce(0 as NSTimeInterval) {
-                
-                $1.object.beginTime += $0
-                return $0 + $1.baseDuration
-            }
-            
-        case (false, let duration?):
-            actualDuration = duration
-            _ = animations.reduce(0 as NSTimeInterval) {
-                
-                $1.object.beginTime += $0
-                return $0 + $1.accumulatedDuration
-            }
-            
-        case (false, nil):
-            actualDuration = animations.reduce(0 as NSTimeInterval) {
-                
-                $1.object.beginTime += $0
-                return $0 + $1.baseDuration
-            }
-        }
-        
-        let object = CAAnimationGroup()
-        object.animations = animations.map { $0.object }
-        options.applyTo(object, duration: actualDuration)
-        
-        return LayerAnimation(object)
+        return options.applyTo(sequence: CAAnimationGroup(), children: animations, span: span)
     }
     
     
@@ -103,10 +33,7 @@ public struct Animate {
     
     public static func wait(duration: NSTimeInterval) -> LayerAnimation {
         
-        let object = CABasicAnimation()
-        object.duration = duration
-        
-        return LayerAnimation(object)
+        return Options().applyTo(CABasicAnimation(), span: .Constant(duration))
     }
     
     
@@ -152,16 +79,14 @@ public struct Animate {
         return self.property(LayerKeyPath.positionY, to: y, duration: duration, options: options)
     }
     
-    public static func moveAlong(path: UIBezierPath, keyTimes: [NSTimeInterval]? = nil, interpolationOptions: [Options]? = nil, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
+    public static func moveAlong(path: UIBezierPath, keyTimes: [NSTimeInterval]? = nil, timingFunctions: [Options.TimingMode]? = nil, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
         
         let object = CAKeyframeAnimation(keyPath: LayerKeyPath.position)
         object.path = path.CGPath
         object.keyTimes = keyTimes?.map { $0.valueForAnimationKeyframe }
-        object.timingFunctions = interpolationOptions?.map { $0.timingMode.timingFunction }
+        object.timingFunctions = timingFunctions?.map { $0.timingFunction }
         
-        options.applyTo(object, duration: duration)
-        
-        return LayerAnimation(object)
+        return options.applyTo(object, span: .Constant(duration))
     }
     
     
@@ -202,7 +127,8 @@ public struct Animate {
                 self.property(LayerKeyPath.scaleX, by: xScale, duration: duration),
                 self.property(LayerKeyPath.scaleY, by: yScale, duration: duration)
             ],
-            duration: duration, options: options
+            span: .Constant(duration),
+            options: options
         )
     }
     
@@ -218,7 +144,8 @@ public struct Animate {
                 self.property(LayerKeyPath.scaleX, to: xScale, duration: duration),
                 self.property(LayerKeyPath.scaleY, to: yScale, duration: duration)
             ],
-            duration: duration, options: options
+            span: .Constant(duration),
+            options: options
         )
     }
     
@@ -308,46 +235,6 @@ public struct Animate {
         _ = by.flatMap { object.byValue = $0.valueForAnimationKeyframe }
         _ = to.flatMap { object.toValue = $0.valueForAnimationKeyframe }
         
-        options.applyTo(object, duration: duration)
-        
-        return LayerAnimation(object)
-    }
-}
-
-
-private extension NSTimeInterval {
-    
-    mutating func addClamped(addend: NSTimeInterval) {
-        
-        guard !self.isInfinite else {
-            
-            return
-        }
-        
-        if addend.isInfinite {
-            
-            self = addend
-        }
-        else {
-            
-            self += addend
-        }
-    }
-    
-    func sumClamped(addend: NSTimeInterval) -> NSTimeInterval {
-        
-        guard !self.isInfinite else {
-            
-            return self
-        }
-        
-        if addend.isInfinite {
-            
-            return addend
-        }
-        else {
-            
-            return self + addend
-        }
+        return options.applyTo(object, span: .Constant(duration))
     }
 }

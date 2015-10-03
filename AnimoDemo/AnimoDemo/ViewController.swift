@@ -21,36 +21,29 @@ class ViewController: UIViewController {
                     Animate.rotateBy(
                         degrees: 360,
                         duration: 1.5,
-                        options: Options(repeatMode: .RepeatCount(2))
-                    ),
+                        options: Options(timingMode: .EaseInOutSine)
+                    ).autoreverse(),
                     Animate.sequence(
                         [
+                            Animate.wait(1),
                             Animate.moveTo(
                                 CGPoint(x: 200, y: 100),
-                                duration: 2,
-                                options: Options(
-                                    timingMode: .EaseInOutSine,
-                                    autoreverses: true
-                                )
-                            ),
-                            Animate.wait(1)
+                                duration: 1,
+                                options: Options(timingMode: .EaseInOutSine)
+                            ).autoreverse()
                         ]
                     ),
                     Animate.keyPath(
                         "cornerRadius",
                         to: self.squareView1?.layer.bounds.width ?? 0,
-                        duration: 3,
-                        options: Options(
-                            timingMode: .EaseInOut,
-                            autoreverses: true
-                        )
-                    ),
+                        duration: 1.5,
+                        options: Options(timingMode: .EaseInOutSine)
+                    ).autoreverse(),
                     Animate.keyPath(
                         "borderWidth",
                         to: 2,
-                        duration: 3,
-                        options: Options(autoreverses: true)
-                    ),
+                        duration: 1.5
+                    ).autoreverse(),
                     Animate.sequence(
                         [
                             Animate.keyPath(
@@ -74,11 +67,8 @@ class ViewController: UIViewController {
                             )
                         ]
                     )
-                ],
-                normalizeDurations: true,
-                duration: 5,
-                options: Options(repeatMode: .RepeatForever)
-            )
+                ]
+            ).repeatForever()
         )
         
         self.squareView2?.layer.runAnimation(
@@ -118,11 +108,8 @@ class ViewController: UIViewController {
                                 duration: 1,
                                 options: Options(timingMode: .EaseInOutBack)
                             )
-                        ],
-                        options: Options(
-                            repeatMode: .RepeatForever
-                        )
-                    )
+                        ]
+                    ).repeatForever()
                 ]
             )
         )

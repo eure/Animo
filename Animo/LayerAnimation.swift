@@ -16,39 +16,31 @@ public struct LayerAnimation {
     
     // MARK: Public
     
-    public var baseDuration: NSTimeInterval {
+    public func repeatBy(count: Int) -> LayerAnimation {
         
-        let object = self.object
-        let rawDuration = object.duration
-        return object.autoreverses ? (rawDuration * 2.0) : rawDuration
+        return Options().applyTo(repetition: self, count: count)
     }
     
-    public var accumulatedDuration: NSTimeInterval {
+    public func repeatForever() -> LayerAnimation {
         
-        let object = self.object
-        switch (object.repeatCount, object.repeatDuration) {
-            
-        case (let repeatCount, 0) where repeatCount > 0:
-            return NSTimeInterval(repeatCount) * self.baseDuration
-            
-        case (Float.infinity, 0):
-            return .infinity
-            
-        case (0, let repeatDuration) where repeatDuration > 0:
-            return repeatDuration // TODO: check for autoreverses?
-            
-        default:
-            return self.baseDuration
-        }
+        return Options().applyTo(repetition: self)
     }
     
+    public func autoreverse() -> LayerAnimation {
+        
+        return Options().applyTo(autoreverse: self)
+    }
     
     // MARK: Internal
     
     internal let object: CAAnimation
+    internal let baseDuration: NSTimeInterval
+    internal let accumulatedDuration: NSTimeInterval
     
-    internal init(_ object: CAAnimation) {
+    internal init(_ object: CAAnimation, baseDuration: NSTimeInterval, accumulatedDuration: NSTimeInterval) {
         
         self.object = object
+        self.baseDuration = baseDuration
+        self.accumulatedDuration = accumulatedDuration
     }
 }

@@ -15,7 +15,7 @@ public extension CALayer {
     
     public func runAnimation(animation: LayerAnimation, forKey key: String = NSUUID().UUIDString) -> String {
         
-        self.addAnimation(animation.object, forKey: key)
+        self.addAnimation(animation.object.copy() as! CAAnimation, forKey: key)
         return key
     }
 }

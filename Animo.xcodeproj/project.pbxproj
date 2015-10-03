@@ -15,6 +15,7 @@
 		B5687DAB1BB7908800168B7E /* CALayer+Animo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DAA1BB7908800168B7E /* CALayer+Animo.swift */; settings = {ASSET_TAGS = (); }; };
 		B5687DAD1BB792B100168B7E /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DAC1BB792B100168B7E /* Options.swift */; settings = {ASSET_TAGS = (); }; };
 		B5687DAF1BB7AAB500168B7E /* KeyframeValueConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DAE1BB7AAB500168B7E /* KeyframeValueConvertible.swift */; settings = {ASSET_TAGS = (); }; };
+		B5F2E5F11BBEE12600FC246A /* DurationSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F2E5F01BBEE12600FC246A /* DurationSpan.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		B5687DAA1BB7908800168B7E /* CALayer+Animo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+Animo.swift"; sourceTree = "<group>"; };
 		B5687DAC1BB792B100168B7E /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		B5687DAE1BB7AAB500168B7E /* KeyframeValueConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyframeValueConvertible.swift; sourceTree = "<group>"; };
+		B5F2E5F01BBEE12600FC246A /* DurationSpan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationSpan.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				B5687DAA1BB7908800168B7E /* CALayer+Animo.swift */,
 				B5687D791BB45B1400168B7E /* LayerAnimation.swift */,
 				B5687DAC1BB792B100168B7E /* Options.swift */,
+				B5F2E5F01BBEE12600FC246A /* DurationSpan.swift */,
 				B5687DAE1BB7AAB500168B7E /* KeyframeValueConvertible.swift */,
 				B5687D641BB45AFC00168B7E /* Info.plist */,
 			);
@@ -209,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F2E5F11BBEE12600FC246A /* DurationSpan.swift in Sources */,
 				B5687D7A1BB45B1400168B7E /* LayerAnimation.swift in Sources */,
 				B5687DAF1BB7AAB500168B7E /* KeyframeValueConvertible.swift in Sources */,
 				B5687DAD1BB792B100168B7E /* Options.swift in Sources */,

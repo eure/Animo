@@ -77,27 +77,14 @@ public struct Options {
     }
     
     
-    // MARK: - RepeatMode
-    
-    public enum RepeatMode {
-        
-        case None
-        case RepeatDuration(NSTimeInterval)
-        case RepeatCount(CGFloat)
-        case RepeatForever
-    }
-    
-    
     // MARK: - Public
     
     public static let Default = Options()
     
-    public init(timingMode: TimingMode = .Linear, speed: CGFloat = 1, autoreverses: Bool = false, repeatMode: RepeatMode = .None, fillMode: String = kCAFillModeBoth, removedOnCompletion: Bool = false) {
+    public init(timingMode: TimingMode = .Linear, speed: CGFloat = 1, fillMode: String = kCAFillModeBoth, removedOnCompletion: Bool = false) {
         
         self.timingMode = timingMode
         self.speed = speed
-        self.autoreverses = autoreverses
-        self.repeatMode = repeatMode
         self.fillMode = fillMode
         self.removedOnCompletion = removedOnCompletion
     }
@@ -106,54 +93,262 @@ public struct Options {
     // MARK: Internal
     
     internal let timingMode: TimingMode
+    internal let speed: CGFloat
+    internal let fillMode: String
+    internal let removedOnCompletion: Bool
     
-    internal func applyTo(object: CAAnimation, duration: NSTimeInterval) {
+    private func applyStandardOptionsTo(object: CAAnimation) {
         
         object.timingFunction = self.timingMode.timingFunction
         object.speed = Float(self.speed)
-        object.autoreverses = self.autoreverses
         object.fillMode = self.fillMode
         object.removedOnCompletion = self.removedOnCompletion
+    }
+    
+    internal func applyTo(object: CABasicAnimation, span: DurationSpan) -> LayerAnimation {
         
-        if duration.isInfinite {
+        self.applyStandardOptionsTo(object)
+        
+        switch span {
             
-            object.duration = DBL_MAX // TODO: duration?
+        case .Automatic:
+            fatalError()
+            
+        case .Constant(let seconds):
+            object.duration = seconds
+            return LayerAnimation(object, baseDuration: seconds, accumulatedDuration: seconds)
+            
+        case .Infinite:
+            object.duration = DBL_MAX
+            return LayerAnimation(
+                object,
+                baseDuration: 0,
+                accumulatedDuration: NSTimeInterval.infinity
+            )
         }
-        else if object.autoreverses {
+    }
+    
+    internal func applyTo(object: CAKeyframeAnimation, span: DurationSpan) -> LayerAnimation {
+        
+        self.applyStandardOptionsTo(object)
+        
+        switch span {
             
-            object.duration = duration / 2.0
+        case .Constant(let seconds):
+            object.duration = seconds
+            return LayerAnimation(object, baseDuration: seconds, accumulatedDuration: seconds)
+            
+        default:
+            fatalError()
+        }
+    }
+    
+    internal func applyTo(group object: CAAnimationGroup, children: [LayerAnimation], span: DurationSpan) -> LayerAnimation {
+        
+        self.applyStandardOptionsTo(object)
+        
+        switch span {
+            
+        case .Automatic:
+            let accumulatedDuration = children.maxAccumulatedDuration
+            if case NSTimeInterval.infinity = accumulatedDuration {
+                
+                object.duration = DBL_MAX
+            }
+            else {
+                
+                object.duration = accumulatedDuration
+            }
+            object.animations = children.map { $0.object.copy() as! CAAnimation }
+            return LayerAnimation(
+                object,
+                baseDuration: children.maxBaseDuration,
+                accumulatedDuration: accumulatedDuration
+            )
+            
+        case .Constant(let seconds):
+            object.duration = seconds
+            object.animations = children.map { $0.object.copy() as! CAAnimation }
+            return LayerAnimation(object, baseDuration: seconds, accumulatedDuration: seconds)
+            
+        case .Infinite:
+            object.duration = DBL_MAX
+            object.animations = children.map { $0.object.copy() as! CAAnimation }
+            return LayerAnimation(
+                object,
+                baseDuration: children.maxBaseDuration,
+                accumulatedDuration: NSTimeInterval.infinity
+            )
+        }
+    }
+    
+    internal func applyTo(sequence object: CAAnimationGroup, children: [LayerAnimation], span: DurationSpan) -> LayerAnimation {
+        
+        self.applyStandardOptionsTo(object)
+        
+        switch span {
+            
+        case .Automatic:
+            let accumulatedDuration = children.totalAccumulatedDuration
+            if case NSTimeInterval.infinity = accumulatedDuration {
+                
+                object.duration = DBL_MAX
+            }
+            else {
+                
+                object.duration = accumulatedDuration
+            }
+            var baseDuration = NSTimeInterval(0)
+            object.animations = children.map {
+                
+                let object = $0.object.copy() as! CAAnimation
+                object.beginTime = baseDuration
+                baseDuration += $0.baseDuration
+                return object
+            }
+            return LayerAnimation(
+                object,
+                baseDuration: baseDuration,
+                accumulatedDuration: accumulatedDuration
+            )
+            
+        case .Constant(let seconds):
+            object.duration = seconds
+            var baseDuration = NSTimeInterval(0)
+            object.animations = children.map {
+                
+                let object = $0.object.copy() as! CAAnimation
+                object.beginTime = baseDuration
+                baseDuration += $0.baseDuration
+                return object
+            }
+            return LayerAnimation(
+                object,
+                baseDuration: baseDuration,
+                accumulatedDuration: seconds
+            )
+            
+        case .Infinite:
+            object.duration = DBL_MAX
+            var baseDuration = NSTimeInterval(0)
+            object.animations = children.map {
+                
+                let object = $0.object.copy() as! CAAnimation
+                object.beginTime = baseDuration
+                baseDuration += $0.baseDuration
+                return object
+            }
+            return LayerAnimation(
+                object,
+                baseDuration: baseDuration,
+                accumulatedDuration: NSTimeInterval.infinity
+            )
+        }
+    }
+    
+    internal func applyTo(repetition original: LayerAnimation, count: Int? = nil) -> LayerAnimation {
+        
+        let object = CAAnimationGroup()
+        self.applyStandardOptionsTo(object)
+        
+        let copy = original.object.copy() as! CAAnimation
+        object.animations = [copy]
+        
+        if let count = count {
+            
+            let frameCount = count + 1
+            copy.repeatCount = Float(count)
+            object.duration = copy.duration * NSTimeInterval(frameCount)
+            
+            return LayerAnimation(
+                object,
+                baseDuration: Options.multiplyDuration(original.baseDuration, by: frameCount),
+                accumulatedDuration: Options.multiplyDuration(original.accumulatedDuration, by: frameCount)
+            )
         }
         else {
             
-            object.duration = duration
+            copy.repeatDuration = NSTimeInterval.infinity
+            object.duration = DBL_MAX
+            
+            return LayerAnimation(
+                object,
+                baseDuration: original.baseDuration,
+                accumulatedDuration: NSTimeInterval.infinity
+            )
         }
+    }
+    
+    internal func applyTo(autoreverse original: LayerAnimation) -> LayerAnimation {
         
-        switch self.repeatMode {
-            
-        case .None:
-            object.repeatCount = 0
-            object.repeatDuration = 0
-            
-        case .RepeatDuration(let repeatDuration):
-            object.repeatCount = 0
-            object.repeatDuration = repeatDuration
-            
-        case .RepeatCount(let repeatCount):
-            object.repeatCount = Float(repeatCount)
-            object.repeatDuration = 0
-            
-        case .RepeatForever:
-            object.repeatCount = Float.infinity
-            object.repeatDuration = 0
-        }
+        let object = original.object.copy() as! CAAnimation
+        object.autoreverses = true
+        
+        return LayerAnimation(
+            object,
+            baseDuration: Options.multiplyDuration(original.baseDuration, by: 2),
+            accumulatedDuration: Options.multiplyDuration(original.accumulatedDuration, by: 2)
+        )
     }
     
     
     // MARK: Private
     
-    private let speed: CGFloat
-    private let autoreverses: Bool
-    private let repeatMode: RepeatMode
-    private let fillMode: String
-    private let removedOnCompletion: Bool
+    internal static func maxDuration(lhs: NSTimeInterval, _ rhs: NSTimeInterval) -> NSTimeInterval {
+        
+        switch (lhs, rhs) {
+            
+        case (NSTimeInterval.infinity, _), (_, NSTimeInterval.infinity):
+            return NSTimeInterval.infinity
+            
+        case (let lhs, let rhs):
+            return Swift.max(lhs, rhs)
+        }
+    }
+    
+    internal static func addDuration(lhs: NSTimeInterval, _ rhs: NSTimeInterval) -> NSTimeInterval {
+        
+        switch (lhs, rhs) {
+            
+        case (NSTimeInterval.infinity, _), (_, NSTimeInterval.infinity):
+            return NSTimeInterval.infinity
+            
+        case (let lhs, let rhs):
+            return lhs + rhs
+        }
+    }
+    
+    internal static func multiplyDuration(lhs: NSTimeInterval, by rhs: Int) -> NSTimeInterval {
+        
+        if case NSTimeInterval.infinity = lhs {
+            
+            return NSTimeInterval.infinity
+        }
+        
+        return lhs * NSTimeInterval(rhs)
+    }
+}
+
+
+private extension SequenceType where Self.Generator.Element == LayerAnimation {
+    
+    var maxBaseDuration: NSTimeInterval {
+        
+        return self.reduce(0) { Options.maxDuration($0, $1.baseDuration) }
+    }
+    
+    var maxAccumulatedDuration: NSTimeInterval {
+        
+        return self.reduce(0) { Options.maxDuration($0, $1.accumulatedDuration) }
+    }
+    
+    var totalBaseDuration: NSTimeInterval {
+        
+        return self.reduce(0) { Options.addDuration($0, $1.baseDuration) }
+    }
+    
+    var totalAccumulatedDuration: NSTimeInterval {
+        
+        return self.reduce(0) { Options.addDuration($0, $1.accumulatedDuration) }
+    }
 }
