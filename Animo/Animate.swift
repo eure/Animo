@@ -15,6 +15,12 @@ public struct Animate {
     
     // MARK: Grouping
     
+    // TODO: enable in XCode 7.1/Swift 2.1
+//    public static func group(animations: LayerAnimation..., span: DurationSpan = .Automatic, options: Options = .Default) -> LayerAnimation {
+//        
+//        return self.group(animations, span: span, options: options)
+//    }
+    
     public static func group(animations: [LayerAnimation], span: DurationSpan = .Automatic, options: Options = .Default) -> LayerAnimation {
         
         return options.applyTo(group: CAAnimationGroup(), children: animations, span: span)
@@ -22,6 +28,12 @@ public struct Animate {
     
     
     // MARK: Sequencing
+    
+    // TODO: enable in XCode 7.1/Swift 2.1
+//    public static func sequence(animations: LayerAnimation..., span: DurationSpan = .Automatic, options: Options = .Default) -> LayerAnimation {
+//        
+//        return self.sequence(animations, span: span, options: options)
+//    }
     
     public static func sequence(animations: [LayerAnimation], span: DurationSpan = .Automatic, options: Options = .Default) -> LayerAnimation {
         
@@ -33,130 +45,74 @@ public struct Animate {
     
     public static func wait(duration: NSTimeInterval) -> LayerAnimation {
         
-        return Options().applyTo(CABasicAnimation(), span: .Constant(duration))
+        return Options(fillMode: kCAFillModeRemoved, removedOnCompletion: true).applyTo(CABasicAnimation(), span: .Constant(duration))
     }
     
     
-    // MARK: Translating
+    // MARK: Positioning
     
-    public static func moveBy(by: CGPoint, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
+    public static func move(from from: CGPoint? = nil, by: CGPoint? = nil, to: CGPoint? = nil, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
         
-        return self.property(LayerKeyPath.position, by: by, duration: duration, options: options)
+        return self.property(LayerKeyPath.position, from: from, by: by, to: to, duration: duration, options: options)
     }
     
-    public static func moveBy(x x: CGFloat, y: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
-        
-        return self.property(LayerKeyPath.position, by: CGPoint(x: x, y: y), duration: duration, options: options)
-    }
-    
-    public static func moveXBy(dx: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
-        
-        return self.property(LayerKeyPath.positionX, by: dx, duration: duration, options: options)
-    }
-    
-    public static func moveYBy(dy: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
-        
-        return self.property(LayerKeyPath.positionY, by: dy, duration: duration, options: options)
-    }
-    
-    public static func moveTo(location: CGPoint, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
-        
-        return self.property(LayerKeyPath.position, to: location, duration: duration, options: options)
-    }
-    
-    public static func moveTo(x x: CGFloat, y: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
-        
-        return self.property(LayerKeyPath.position, to: CGPoint(x: x, y: y), duration: duration, options: options)
-    }
-    
-    public static func moveXTo(x: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
-        
-        return self.property(LayerKeyPath.positionX, to: x, duration: duration, options: options)
-    }
-    
-    public static func moveYTo(y: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
-        
-        return self.property(LayerKeyPath.positionY, to: y, duration: duration, options: options)
-    }
-    
-    public static func moveAlong(path: UIBezierPath, keyTimes: [NSTimeInterval]? = nil, timingFunctions: [Options.TimingMode]? = nil, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
+    public static func move(along path: UIBezierPath, keyTimes: [NSTimeInterval] = [], timingFunctions: [Options.TimingMode] = [], duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
         
         let object = CAKeyframeAnimation(keyPath: LayerKeyPath.position)
         object.path = path.CGPath
-        object.keyTimes = keyTimes?.map { $0.valueForAnimationKeyframe }
-        object.timingFunctions = timingFunctions?.map { $0.timingFunction }
         
+        if keyTimes.count > 0 {
+            
+            object.keyTimes = keyTimes.map { $0.valueForAnimationKeyframe }
+        }
+        if timingFunctions.count > 0 {
+            
+            object.timingFunctions = timingFunctions.map { $0.timingFunction }
+        }
         return options.applyTo(object, span: .Constant(duration))
+    }
+    
+    public static func moveX(from from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
+        
+        return self.property(LayerKeyPath.positionX, from: from, by: by, to: to, duration: duration, options: options)
+    }
+    
+    public static func moveY(from from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
+        
+        return self.property(LayerKeyPath.positionY, from: from, by: by, to: to, duration: duration, options: options)
     }
     
     
     // MARK: Rotating
     
-    public static func rotateBy<T: FloatingPointKeyframeValueConvertible>(degrees degrees: T, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
+    public static func rotateDegrees<T: FloatingPointKeyframeValueConvertible>(from from: T? = nil, by: T? = nil, to: T? = nil, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
         
-        return self.property(LayerKeyPath.rotation, by: degrees.degreesToRadians, duration: duration, options: options)
+        return self.property(LayerKeyPath.rotation, from: from?.degreesToRadians, by: by?.degreesToRadians, to: to?.degreesToRadians, duration: duration, options: options)
     }
     
-    public static func rotateBy<T: FloatingPointKeyframeValueConvertible>(radians radians: T, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
+    public static func rotateRadians<T: FloatingPointKeyframeValueConvertible>(from from: T? = nil, by: T? = nil, to: T? = nil, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
         
-        return self.property(LayerKeyPath.rotation, by: radians, duration: duration, options: options)
-    }
-    
-    public static func rotateTo<T: FloatingPointKeyframeValueConvertible>(degrees degrees: T, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
-        
-        return self.property(LayerKeyPath.rotation, to: degrees.degreesToRadians, duration: duration, options: options)
-    }
-    
-    public static func rotateTo<T: FloatingPointKeyframeValueConvertible>(radians radians: T, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
-        
-        return self.property(LayerKeyPath.rotation, to: radians, duration: duration, options: options)
+        return self.property(LayerKeyPath.rotation, from: from, by: by, to: to, duration: duration, options: options)
     }
     
     
     // MARK: Scaling
     
-    public static func scaleBy(scale: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
+    public static func scale(from from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
         
-        return self.property(LayerKeyPath.scale, by: scale, duration: duration, options: options)
+        return self.property(LayerKeyPath.scale, from: from, by: by, to: to, duration: duration, options: options)
     }
     
-    public static func scaleBy(xScale xScale: CGFloat, yScale: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
+    public static func scale(from from: CGSize? = nil, by: CGSize? = nil, to: CGSize? = nil, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
         
         return self.group(
             [
-                self.property(LayerKeyPath.scaleX, by: xScale, duration: duration),
-                self.property(LayerKeyPath.scaleY, by: yScale, duration: duration)
+                self.property(LayerKeyPath.scaleX, from: from?.width, by: by?.width, to: to?.width, duration: duration),
+                self.property(LayerKeyPath.scaleY, from: from?.height, by: by?.height, to: to?.height, duration: duration)
             ],
             span: .Constant(duration),
             options: options
         )
-    }
-    
-    public static func scaleTo(scale: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
-        
-        return self.property(LayerKeyPath.scale, to: scale, duration: duration, options: options)
-    }
-    
-    public static func scaleTo(xScale xScale: CGFloat, yScale: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
-        
-        return self.group(
-            [
-                self.property(LayerKeyPath.scaleX, to: xScale, duration: duration),
-                self.property(LayerKeyPath.scaleY, to: yScale, duration: duration)
-            ],
-            span: .Constant(duration),
-            options: options
-        )
-    }
-    
-    public static func scaleXTo(xScale: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
-        
-        return self.property(LayerKeyPath.scaleX, to: xScale, duration: duration, options: options)
-    }
-    
-    public static func scaleYTo(yScale: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
-        
-        return self.property(LayerKeyPath.scaleY, to: yScale, duration: duration, options: options)
     }
     
     
@@ -172,42 +128,17 @@ public struct Animate {
         return self.property(LayerKeyPath.opacity, to: 0, duration: duration, options: options)
     }
     
-    public static func fadeAlphaTo(alpha: CGFloat, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
+    public static func fade(from from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
         
-        return self.property(LayerKeyPath.opacity, to: alpha, duration: duration, options: options)
+        return self.property(LayerKeyPath.opacity, from: from, by: by, to: to, duration: duration, options: options)
     }
     
     
     // MARK: Custom Animations
     
-    public static func keyPath<T: KeyframeValueConvertible>(keyPath: String, from: T, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
+    public static func keyPath<T: KeyframeValueConvertible>(keyPath: String, from: T? = nil, by: T? = nil, to: T? = nil, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
         
-        return self.property(keyPath, from: from, duration: duration, options: options)
-    }
-    
-    public static func keyPath<T: KeyframeValueConvertible>(keyPath: String, by: T, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
-        
-        return self.property(keyPath, by: by, duration: duration, options: options)
-    }
-    
-    public static func keyPath<T: KeyframeValueConvertible>(keyPath: String, to: T, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
-        
-        return self.property(keyPath, to: to, duration: duration, options: options)
-    }
-    
-    public static func keyPath<T: KeyframeValueConvertible>(keyPath: String, from: T, by: T, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
-        
-        return self.property(keyPath, from: from, by: by, duration: duration, options: options)
-    }
-    
-    public static func keyPath<T: KeyframeValueConvertible>(keyPath: String, by: T, to: T, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
-        
-        return self.property(keyPath, by: by, to: to, duration: duration, options: options)
-    }
-    
-    public static func keyPath<T: KeyframeValueConvertible>(keyPath: String, from: T, to: T, duration: NSTimeInterval, options: Options = .Default) -> LayerAnimation {
-        
-        return self.property(keyPath, from: from, to: to, duration: duration, options: options)
+        return self.property(keyPath, from: from, by: by, to: to, duration: duration, options: options)
     }
     
     
@@ -238,3 +169,5 @@ public struct Animate {
         return options.applyTo(object, span: .Constant(duration))
     }
 }
+
+

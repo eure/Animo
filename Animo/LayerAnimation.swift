@@ -16,6 +16,9 @@ public struct LayerAnimation {
     
     // MARK: Public
     
+    public let accumulatedDuration: NSTimeInterval
+    public let baseDuration: NSTimeInterval
+    
     public func repeatBy(count: Int) -> LayerAnimation {
         
         return Options().applyTo(repetition: self, count: count)
@@ -31,11 +34,8 @@ public struct LayerAnimation {
         return Options().applyTo(autoreverse: self)
     }
     
-    // MARK: Internal
     
-    internal let object: CAAnimation
-    internal let baseDuration: NSTimeInterval
-    internal let accumulatedDuration: NSTimeInterval
+    // MARK: Internal
     
     internal init(_ object: CAAnimation, baseDuration: NSTimeInterval, accumulatedDuration: NSTimeInterval) {
         
@@ -43,4 +43,19 @@ public struct LayerAnimation {
         self.baseDuration = baseDuration
         self.accumulatedDuration = accumulatedDuration
     }
+    
+    internal func copyObject() -> CAAnimation {
+        
+        let original = self.object
+        
+        let copy = original.copy() as! CAAnimation
+        copy.delegate = original.delegate
+        
+        return copy
+    }
+    
+    
+    // MARK: Private
+    
+    private let object: CAAnimation
 }

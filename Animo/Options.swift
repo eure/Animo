@@ -159,7 +159,7 @@ public struct Options {
                 
                 object.duration = accumulatedDuration
             }
-            object.animations = children.map { $0.object.copy() as! CAAnimation }
+            object.animations = children.map { $0.copyObject() }
             return LayerAnimation(
                 object,
                 baseDuration: children.maxBaseDuration,
@@ -168,12 +168,12 @@ public struct Options {
             
         case .Constant(let seconds):
             object.duration = seconds
-            object.animations = children.map { $0.object.copy() as! CAAnimation }
+            object.animations = children.map { $0.copyObject() }
             return LayerAnimation(object, baseDuration: seconds, accumulatedDuration: seconds)
             
         case .Infinite:
             object.duration = DBL_MAX
-            object.animations = children.map { $0.object.copy() as! CAAnimation }
+            object.animations = children.map { $0.copyObject() }
             return LayerAnimation(
                 object,
                 baseDuration: children.maxBaseDuration,
@@ -201,7 +201,7 @@ public struct Options {
             var baseDuration = NSTimeInterval(0)
             object.animations = children.map {
                 
-                let object = $0.object.copy() as! CAAnimation
+                let object = $0.copyObject()
                 object.beginTime = baseDuration
                 baseDuration += $0.baseDuration
                 return object
@@ -217,7 +217,7 @@ public struct Options {
             var baseDuration = NSTimeInterval(0)
             object.animations = children.map {
                 
-                let object = $0.object.copy() as! CAAnimation
+                let object = $0.copyObject()
                 object.beginTime = baseDuration
                 baseDuration += $0.baseDuration
                 return object
@@ -233,7 +233,7 @@ public struct Options {
             var baseDuration = NSTimeInterval(0)
             object.animations = children.map {
                 
-                let object = $0.object.copy() as! CAAnimation
+                let object = $0.copyObject()
                 object.beginTime = baseDuration
                 baseDuration += $0.baseDuration
                 return object
@@ -251,7 +251,7 @@ public struct Options {
         let object = CAAnimationGroup()
         self.applyStandardOptionsTo(object)
         
-        let copy = original.object.copy() as! CAAnimation
+        let copy = original.copyObject()
         object.animations = [copy]
         
         if let count = count {
@@ -281,7 +281,7 @@ public struct Options {
     
     internal func applyTo(autoreverse original: LayerAnimation) -> LayerAnimation {
         
-        let object = original.object.copy() as! CAAnimation
+        let object = original.copyObject()
         object.autoreverses = true
         
         return LayerAnimation(
