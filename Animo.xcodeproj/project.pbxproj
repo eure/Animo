@@ -8,14 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		B5687D631BB45AFC00168B7E /* Animo.h in Headers */ = {isa = PBXBuildFile; fileRef = B5687D621BB45AFC00168B7E /* Animo.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B5687D6A1BB45AFC00168B7E /* Animo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5687D5F1BB45AFC00168B7E /* Animo.framework */; settings = {ASSET_TAGS = (); }; };
+		B5687D6A1BB45AFC00168B7E /* Animo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5687D5F1BB45AFC00168B7E /* Animo.framework */; };
 		B5687D6F1BB45AFC00168B7E /* AnimoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687D6E1BB45AFC00168B7E /* AnimoTests.swift */; };
-		B5687D7A1BB45B1400168B7E /* LayerAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687D791BB45B1400168B7E /* LayerAnimation.swift */; settings = {ASSET_TAGS = (); }; };
-		B5687DA91BB78EA800168B7E /* Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DA81BB78EA800168B7E /* Animate.swift */; settings = {ASSET_TAGS = (); }; };
-		B5687DAB1BB7908800168B7E /* CALayer+Animo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DAA1BB7908800168B7E /* CALayer+Animo.swift */; settings = {ASSET_TAGS = (); }; };
-		B5687DAD1BB792B100168B7E /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DAC1BB792B100168B7E /* Options.swift */; settings = {ASSET_TAGS = (); }; };
-		B5687DAF1BB7AAB500168B7E /* KeyframeValueConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DAE1BB7AAB500168B7E /* KeyframeValueConvertible.swift */; settings = {ASSET_TAGS = (); }; };
-		B5F2E5F11BBEE12600FC246A /* DurationSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F2E5F01BBEE12600FC246A /* DurationSpan.swift */; settings = {ASSET_TAGS = (); }; };
+		B5687D7A1BB45B1400168B7E /* LayerAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687D791BB45B1400168B7E /* LayerAnimation.swift */; };
+		B5687DA91BB78EA800168B7E /* Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DA81BB78EA800168B7E /* Animate.swift */; };
+		B5687DAB1BB7908800168B7E /* CALayer+Animo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DAA1BB7908800168B7E /* CALayer+Animo.swift */; };
+		B5687DAD1BB792B100168B7E /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DAC1BB792B100168B7E /* Options.swift */; };
+		B5687DAF1BB7AAB500168B7E /* KeyframeValueConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DAE1BB7AAB500168B7E /* KeyframeValueConvertible.swift */; };
+		B5C2A2B21BC17A3A00E58A73 /* TimingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C2A2B11BC17A3A00E58A73 /* TimingMode.swift */; };
+		B5C2A2B41BC17E0000E58A73 /* CAAnimation+Animo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C2A2B31BC17E0000E58A73 /* CAAnimation+Animo.swift */; };
+		B5C2A2B61BC2CB5200E58A73 /* TransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C2A2B51BC2CB5200E58A73 /* TransitionType.swift */; };
+		B5F2E5F11BBEE12600FC246A /* DurationSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F2E5F01BBEE12600FC246A /* DurationSpan.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,9 @@
 		B5687DAA1BB7908800168B7E /* CALayer+Animo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+Animo.swift"; sourceTree = "<group>"; };
 		B5687DAC1BB792B100168B7E /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		B5687DAE1BB7AAB500168B7E /* KeyframeValueConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyframeValueConvertible.swift; sourceTree = "<group>"; };
+		B5C2A2B11BC17A3A00E58A73 /* TimingMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimingMode.swift; sourceTree = "<group>"; };
+		B5C2A2B31BC17E0000E58A73 /* CAAnimation+Animo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CAAnimation+Animo.swift"; sourceTree = "<group>"; };
+		B5C2A2B51BC2CB5200E58A73 /* TransitionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionType.swift; sourceTree = "<group>"; };
 		B5F2E5F01BBEE12600FC246A /* DurationSpan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationSpan.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,10 +91,13 @@
 			children = (
 				B5687D621BB45AFC00168B7E /* Animo.h */,
 				B5687DA81BB78EA800168B7E /* Animate.swift */,
+				B5C2A2B31BC17E0000E58A73 /* CAAnimation+Animo.swift */,
 				B5687DAA1BB7908800168B7E /* CALayer+Animo.swift */,
 				B5687D791BB45B1400168B7E /* LayerAnimation.swift */,
 				B5687DAC1BB792B100168B7E /* Options.swift */,
 				B5F2E5F01BBEE12600FC246A /* DurationSpan.swift */,
+				B5C2A2B11BC17A3A00E58A73 /* TimingMode.swift */,
+				B5C2A2B51BC2CB5200E58A73 /* TransitionType.swift */,
 				B5687DAE1BB7AAB500168B7E /* KeyframeValueConvertible.swift */,
 				B5687D641BB45AFC00168B7E /* Info.plist */,
 			);
@@ -160,6 +169,7 @@
 		B5687D561BB45AFC00168B7E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0710;
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "John Rommel Estropia";
@@ -213,9 +223,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5F2E5F11BBEE12600FC246A /* DurationSpan.swift in Sources */,
+				B5C2A2B61BC2CB5200E58A73 /* TransitionType.swift in Sources */,
 				B5687D7A1BB45B1400168B7E /* LayerAnimation.swift in Sources */,
 				B5687DAF1BB7AAB500168B7E /* KeyframeValueConvertible.swift in Sources */,
+				B5C2A2B21BC17A3A00E58A73 /* TimingMode.swift in Sources */,
 				B5687DAD1BB792B100168B7E /* Options.swift in Sources */,
+				B5C2A2B41BC17E0000E58A73 /* CAAnimation+Animo.swift in Sources */,
 				B5687DAB1BB7908800168B7E /* CALayer+Animo.swift in Sources */,
 				B5687DA91BB78EA800168B7E /* Animate.swift in Sources */,
 			);
