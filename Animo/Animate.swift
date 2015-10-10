@@ -174,17 +174,6 @@ public struct Animate {
     }
     
     
-    // MARK: Transitions
-    
-    public static func transition(type: TransitionType = .Fade, duration: NSTimeInterval, timingMode: TimingMode = .Linear, options: Options = .Default) -> LayerAnimation {
-        
-        let object = CATransition()
-        type.applyTo(object)
-        
-        return LayerAnimation(object: object, baseDuration:: .Constant(duration), timingMode: timingMode, options: options)
-    }
-    
-    
     // MARK: Private
     
     private enum LayerKeyPath {

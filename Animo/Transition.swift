@@ -1,18 +1,19 @@
 //
-//  TransitionType.swift
+//  Transition.swift
 //  Animo
 //
-//  Created by John Rommel Estropia on 2015/10/06.
+//  Created by John Rommel Estropia on 2015/10/08.
 //  Copyright © 2015 John Rommel Estropia. All rights reserved.
 //
 
-import Foundation
-import QuartzCore
+import UIKit
 
 
-// MARK: - TransitionType
+// MARK: - Transition
 
-public enum TransitionType {
+public enum Transition {
+    
+    // MARK: - Directions
     
     public enum Direction {
         
@@ -33,10 +34,16 @@ public enum TransitionType {
         }
     }
     
+    
+    // MARK: Public
+    
     case Fade
     case MoveIn(Direction)
     case Push(Direction)
     case Reveal(Direction)
+    
+    
+    // MARK: Internal
     
     internal func applyTo(object: CATransition) {
         

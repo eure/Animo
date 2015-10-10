@@ -61,4 +61,14 @@ public extension CALayer {
         let elapsedTime = self.convertTime(CACurrentMediaTime(), fromLayer: nil) - pausedTime
         self.beginTime = elapsedTime
     }
+    
+    public func runTransition(type: Transition = .Fade, duration: NSTimeInterval = 0, timingMode: TimingMode = .Linear, options: Options = .Default) {
+        
+        let transition = CATransition()
+        type.applyTo(transition)
+        transition.duration = duration
+        transition.applyOptions(options)
+        
+        self.addAnimation(transition, forKey: nil)
+    }
 }

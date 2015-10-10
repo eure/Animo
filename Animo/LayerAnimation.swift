@@ -216,6 +216,17 @@ public struct LayerAnimation {
         )
     }
     
+    internal init(transition object: CATransition, duration: NSTimeInterval, timingMode: TimingMode, options: Options) {
+        
+        object.applyOptions()
+        
+        self.init(
+            object,
+            baseDuration: duration,
+            accumulatedDuration: duration
+        )
+    }
+    
     internal init(_ object: CAAnimation, baseDuration: NSTimeInterval, accumulatedDuration: NSTimeInterval) {
         
         self.object = object
