@@ -62,7 +62,7 @@ public extension CALayer {
         self.beginTime = elapsedTime
     }
     
-    public func runTransition(type: Transition = .Fade, duration: NSTimeInterval = 0, timingMode: TimingMode = .Linear, options: Options = .Default) {
+    public func runTransition(type: Transition = .Fade, duration: NSTimeInterval = 0, timingMode: TimingMode = .Linear, options: Options = Options(fillMode: kCAFillModeRemoved, removedOnCompletion: true)) {
         
         let transition = CATransition()
         type.applyTo(transition)
