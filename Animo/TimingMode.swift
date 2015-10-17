@@ -18,6 +18,7 @@ public enum TimingMode {
     case Linear
     case EaseIn, EaseOut, EaseInOut
     case Spring(damping: CGFloat)
+    case Discrete
     
     // http://easings.net/
     case EaseInSine, EaseOutSine, EaseInOutSine
@@ -43,6 +44,7 @@ public enum TimingMode {
         case .EaseOut:      return CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
         case .EaseInOut:    return CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         case .Spring(let damping):    return CAMediaTimingFunction(controlPoints: 0.5, 1.1 + (Float(damping) / 3.0), 1, 1)
+        case .Discrete:       return CAMediaTimingFunction(controlPoints: 1, 0, 1, 1)
             
             // http://easings.net/
         case .EaseInSine:       return CAMediaTimingFunction(controlPoints: 0.47, 0, 0.745, 0.715)
