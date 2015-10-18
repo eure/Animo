@@ -43,7 +43,7 @@ public struct Animate {
     
     public static func wait(duration: NSTimeInterval) -> LayerAnimation {
         
-        return LayerAnimation(object: CABasicAnimation(), span: .Constant(duration), timingMode: .Linear, options: Options(fillMode: kCAFillModeRemoved, removedOnCompletion: true))
+        return LayerAnimation(object: CABasicAnimation(), span: .Constant(duration), timingMode: .Linear, options: Options(fillMode: [], removedOnCompletion: true))
     }
     
     
