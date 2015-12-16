@@ -12,7 +12,7 @@
 		B5687D6A1BB45AFC00168B7E /* Animo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5687D5F1BB45AFC00168B7E /* Animo.framework */; };
 		B5687D6F1BB45AFC00168B7E /* AnimoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687D6E1BB45AFC00168B7E /* AnimoTests.swift */; };
 		B5687D7A1BB45B1400168B7E /* LayerAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687D791BB45B1400168B7E /* LayerAnimation.swift */; };
-		B5687DA91BB78EA800168B7E /* Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DA81BB78EA800168B7E /* Animate.swift */; };
+		B5687DA91BB78EA800168B7E /* Animo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DA81BB78EA800168B7E /* Animo.swift */; };
 		B5687DAB1BB7908800168B7E /* CALayer+Animo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DAA1BB7908800168B7E /* CALayer+Animo.swift */; };
 		B5687DAD1BB792B100168B7E /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DAC1BB792B100168B7E /* Options.swift */; };
 		B5687DAF1BB7AAB500168B7E /* KeyframeValueConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DAE1BB7AAB500168B7E /* KeyframeValueConvertible.swift */; };
@@ -33,6 +33,9 @@
 
 /* Begin PBXFileReference section */
 		B5181CA81BC574830095A2B8 /* Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
+		B52ABD2C1C1BB0550085EC1F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		B52ABD2D1C1BB0550085EC1F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B52ABD301C1BCDEE0085EC1F /* Animo.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Animo.podspec; sourceTree = "<group>"; };
 		B5687D5F1BB45AFC00168B7E /* Animo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Animo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5687D621BB45AFC00168B7E /* Animo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Animo.h; sourceTree = "<group>"; };
 		B5687D641BB45AFC00168B7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -40,7 +43,7 @@
 		B5687D6E1BB45AFC00168B7E /* AnimoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimoTests.swift; sourceTree = "<group>"; };
 		B5687D701BB45AFC00168B7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5687D791BB45B1400168B7E /* LayerAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayerAnimation.swift; sourceTree = "<group>"; };
-		B5687DA81BB78EA800168B7E /* Animate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animate.swift; sourceTree = "<group>"; };
+		B5687DA81BB78EA800168B7E /* Animo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animo.swift; sourceTree = "<group>"; };
 		B5687DAA1BB7908800168B7E /* CALayer+Animo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+Animo.swift"; sourceTree = "<group>"; };
 		B5687DAC1BB792B100168B7E /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		B5687DAE1BB7AAB500168B7E /* KeyframeValueConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyframeValueConvertible.swift; sourceTree = "<group>"; };
@@ -71,6 +74,9 @@
 		B5687D551BB45AFC00168B7E = {
 			isa = PBXGroup;
 			children = (
+				B52ABD2C1C1BB0550085EC1F /* LICENSE */,
+				B52ABD2D1C1BB0550085EC1F /* README.md */,
+				B52ABD301C1BCDEE0085EC1F /* Animo.podspec */,
 				B5687D611BB45AFC00168B7E /* Animo */,
 				B5687D6D1BB45AFC00168B7E /* AnimoTests */,
 				B5687D601BB45AFC00168B7E /* Products */,
@@ -90,7 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				B5687D621BB45AFC00168B7E /* Animo.h */,
-				B5687DA81BB78EA800168B7E /* Animate.swift */,
+				B5687DA81BB78EA800168B7E /* Animo.swift */,
 				B5181CA81BC574830095A2B8 /* Transition.swift */,
 				B5C2A2B31BC17E0000E58A73 /* CAAnimation+Animo.swift */,
 				B5687DAA1BB7908800168B7E /* CALayer+Animo.swift */,
@@ -230,7 +236,7 @@
 				B5687DAD1BB792B100168B7E /* Options.swift in Sources */,
 				B5C2A2B41BC17E0000E58A73 /* CAAnimation+Animo.swift in Sources */,
 				B5687DAB1BB7908800168B7E /* CALayer+Animo.swift in Sources */,
-				B5687DA91BB78EA800168B7E /* Animate.swift in Sources */,
+				B5687DA91BB78EA800168B7E /* Animo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,7 +362,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnestropia.Animo;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.eure.ios.Animo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -375,7 +381,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnestropia.Animo;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.eure.ios.Animo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -387,7 +393,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = AnimoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnestropia.AnimoTests;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.eure.ios.AnimoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -397,7 +403,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = AnimoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnestropia.AnimoTests;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.eure.ios.AnimoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
