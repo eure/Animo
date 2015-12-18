@@ -8,7 +8,8 @@
 Bring life to CALayers with SpriteKit-like animation builders.
 
 
-![preview](https://cloud.githubusercontent.com/assets/3029684/11888516/beb2675a-a581-11e5-997a-21830c5907e1.gif)
+![preview](https://cloud.githubusercontent.com/assets/3029684/11888561/1df51b40-a582-11e5-85c4-564a7f39ca08.gif)
+
 
 [TODO: readme]
 
