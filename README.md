@@ -11,53 +11,55 @@ Bring life to CALayers with SpriteKit-like animation builders.
 
 Here's a sneak peak of a slightly complex animation:
 ```swift
-Animo.sequence(
-    Animo.wait(1),
-    Animo.replayForever(
-        Animo.sequence(
-            Animo.move(
-                by: CGPoint(x: 100, y: 200),
-                duration: 2,
-                timingMode: .EaseInOutBack
-            ),
-            Animo.rotateDegrees(
-                by: -180,
-                duration: 1,
-                timingMode: .EaseInOutBack
-            ),
-            Animo.group(
-                Animo.scaleX(
-                    by: 2,
+someView.layer.runAnimation(
+    Animo.sequence(
+        Animo.wait(1),
+        Animo.replayForever(
+            Animo.sequence(
+                Animo.move(
+                    by: CGPoint(x: 100, y: 200),
+                    duration: 2,
+                    timingMode: .EaseInOutBack
+                ),
+                Animo.rotateDegrees(
+                    by: -180,
                     duration: 1,
                     timingMode: .EaseInOutBack
                 ),
-                Animo.scaleY(
-                    by: 0.5,
-                    duration: 1,
+                Animo.group(
+                    Animo.scaleX(
+                        by: 2,
+                        duration: 1,
+                        timingMode: .EaseInOutBack
+                    ),
+                    Animo.scaleY(
+                        by: 0.5,
+                        duration: 1,
+                        timingMode: .EaseInOutBack
+                    )
+                ),
+                Animo.wait(1),
+                Animo.move(
+                    by: CGPoint(x: -100, y: -200),
+                    duration: 2,
                     timingMode: .EaseInOutBack
-                )
-            ),
-            Animo.wait(1),
-            Animo.move(
-                by: CGPoint(x: -100, y: -200),
-                duration: 2,
-                timingMode: .EaseInOutBack
-            ),
-            Animo.rotateDegrees(
-                by: 180,
-                duration: 1,
-                timingMode: .EaseInOutBack
-            ),
-            Animo.group(
-                Animo.scaleX(
-                    to: 1,
+                ),
+                Animo.rotateDegrees(
+                    by: 180,
                     duration: 1,
                     timingMode: .EaseInOutBack
                 ),
-                Animo.scaleY(
-                    to: 1,
-                    duration: 1,
-                    timingMode: .EaseInOutBack
+                Animo.group(
+                    Animo.scaleX(
+                        to: 1,
+                        duration: 1,
+                        timingMode: .EaseInOutBack
+                    ),
+                    Animo.scaleY(
+                        to: 1,
+                        duration: 1,
+                        timingMode: .EaseInOutBack
+                    )
                 )
             )
         )
