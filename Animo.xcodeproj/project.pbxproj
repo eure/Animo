@@ -19,6 +19,9 @@
 		B5C2A2B21BC17A3A00E58A73 /* TimingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C2A2B11BC17A3A00E58A73 /* TimingMode.swift */; };
 		B5C2A2B41BC17E0000E58A73 /* CAAnimation+Animo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C2A2B31BC17E0000E58A73 /* CAAnimation+Animo.swift */; };
 		B5F2E5F11BBEE12600FC246A /* DurationSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F2E5F01BBEE12600FC246A /* DurationSpan.swift */; };
+		B5F728551C27F59B00519751 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F728541C27F59B00519751 /* QuartzCore.framework */; };
+		B5F728581C27F5B400519751 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F728571C27F5B400519751 /* UIKit.framework */; };
+		B5F7285A1C27F5BB00519751 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F728591C27F5BB00519751 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,9 @@
 		B5C2A2B11BC17A3A00E58A73 /* TimingMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimingMode.swift; sourceTree = "<group>"; };
 		B5C2A2B31BC17E0000E58A73 /* CAAnimation+Animo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CAAnimation+Animo.swift"; sourceTree = "<group>"; };
 		B5F2E5F01BBEE12600FC246A /* DurationSpan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationSpan.swift; sourceTree = "<group>"; };
+		B5F728541C27F59B00519751 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B5F728571C27F5B400519751 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B5F728591C27F5BB00519751 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F7285A1C27F5BB00519751 /* Foundation.framework in Frameworks */,
+				B5F728581C27F5B400519751 /* UIKit.framework in Frameworks */,
+				B5F728551C27F59B00519751 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +83,7 @@
 		B5687D551BB45AFC00168B7E = {
 			isa = PBXGroup;
 			children = (
+				B5F728561C27F5A100519751 /* Frameworks */,
 				B52ABD2C1C1BB0550085EC1F /* LICENSE */,
 				B52ABD2D1C1BB0550085EC1F /* README.md */,
 				B52ABD301C1BCDEE0085EC1F /* Animo.podspec */,
@@ -117,6 +127,16 @@
 				B5687D701BB45AFC00168B7E /* Info.plist */,
 			);
 			path = AnimoTests;
+			sourceTree = "<group>";
+		};
+		B5F728561C27F5A100519751 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B5F728591C27F5BB00519751 /* Foundation.framework */,
+				B5F728541C27F59B00519751 /* QuartzCore.framework */,
+				B5F728571C27F5B400519751 /* UIKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
