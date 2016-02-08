@@ -2,7 +2,7 @@
 //  Options.swift
 //  Animo
 //
-//  Copyright © 2015 John Rommel Estropia
+//  Copyright © 2016 eureka, Inc.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,10 @@ import UIKit
 
 public struct Options {
     
+    
     // MARK: - Public
+    
+    public static let Default = Options()
     
     public struct FillMode: OptionSetType {
         
@@ -46,10 +49,13 @@ public struct Options {
         }
         
         public let rawValue: Int
+    }
+    
+    public init(speed: CGFloat = 1, fillMode: FillMode = .Both, removedOnCompletion: Bool = false) {
         
-        private var valueForOptions: String {
+        func valueForCAAnimation(fillMode: FillMode) -> String {
             
-            switch self {
+            switch fillMode {
                 
             case FillMode.Forwards: return kCAFillModeForwards
             case FillMode.Backwards: return kCAFillModeBackwards
@@ -57,14 +63,9 @@ public struct Options {
             default: return kCAFillModeRemoved
             }
         }
-    }
-    
-    public static let Default = Options()
-    
-    public init(speed: CGFloat = 1, fillMode: FillMode = .Both, removedOnCompletion: Bool = false) {
         
         self.speed = speed
-        self.fillMode = fillMode.valueForOptions
+        self.fillMode = valueForCAAnimation(fillMode)
         self.removedOnCompletion = removedOnCompletion
     }
     

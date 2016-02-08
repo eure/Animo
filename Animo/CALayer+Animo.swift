@@ -2,7 +2,7 @@
 //  CALayer+Animo.swift
 //  Animo
 //
-//  Copyright © 2015 John Rommel Estropia
+//  Copyright © 2016 eureka, Inc.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -29,6 +29,7 @@ import UIKit
 // MARK: - CALayer
 
 public extension CALayer {
+    
     
     // MARK: Public
     
@@ -87,16 +88,5 @@ public extension CALayer {
         transition.applyOptions(options)
         
         self.addAnimation(transition, forKey: nil)
-    }
-}
-
-
-// MARK: - LayerAnimation
-
-public extension LayerAnimation {
-    
-    public func runOnLayer(layer: CALayer, withKey key: String = NSUUID().UUIDString) -> String {
-        
-        return layer.runAnimation(self, forKey: key)
     }
 }

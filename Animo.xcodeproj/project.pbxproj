@@ -16,8 +16,9 @@
 		B5687DAB1BB7908800168B7E /* CALayer+Animo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DAA1BB7908800168B7E /* CALayer+Animo.swift */; };
 		B5687DAD1BB792B100168B7E /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DAC1BB792B100168B7E /* Options.swift */; };
 		B5687DAF1BB7AAB500168B7E /* KeyframeValueConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DAE1BB7AAB500168B7E /* KeyframeValueConvertible.swift */; };
+		B58D8DF11C683E3100632F96 /* CAAnimation+AnimoInternals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D8DF01C683E3100632F96 /* CAAnimation+AnimoInternals.swift */; };
+		B58D8DF31C68404300632F96 /* Transition+AnimoInternals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D8DF21C68404300632F96 /* Transition+AnimoInternals.swift */; };
 		B5C2A2B21BC17A3A00E58A73 /* TimingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C2A2B11BC17A3A00E58A73 /* TimingMode.swift */; };
-		B5C2A2B41BC17E0000E58A73 /* CAAnimation+Animo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C2A2B31BC17E0000E58A73 /* CAAnimation+Animo.swift */; };
 		B5F2E5F11BBEE12600FC246A /* DurationSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F2E5F01BBEE12600FC246A /* DurationSpan.swift */; };
 		B5F728551C27F59B00519751 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F728541C27F59B00519751 /* QuartzCore.framework */; };
 		B5F728581C27F5B400519751 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F728571C27F5B400519751 /* UIKit.framework */; };
@@ -50,8 +51,9 @@
 		B5687DAA1BB7908800168B7E /* CALayer+Animo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+Animo.swift"; sourceTree = "<group>"; };
 		B5687DAC1BB792B100168B7E /* Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		B5687DAE1BB7AAB500168B7E /* KeyframeValueConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyframeValueConvertible.swift; sourceTree = "<group>"; };
+		B58D8DF01C683E3100632F96 /* CAAnimation+AnimoInternals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CAAnimation+AnimoInternals.swift"; sourceTree = "<group>"; };
+		B58D8DF21C68404300632F96 /* Transition+AnimoInternals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Transition+AnimoInternals.swift"; sourceTree = "<group>"; };
 		B5C2A2B11BC17A3A00E58A73 /* TimingMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimingMode.swift; sourceTree = "<group>"; };
-		B5C2A2B31BC17E0000E58A73 /* CAAnimation+Animo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CAAnimation+Animo.swift"; sourceTree = "<group>"; };
 		B5F2E5F01BBEE12600FC246A /* DurationSpan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationSpan.swift; sourceTree = "<group>"; };
 		B5F728541C27F59B00519751 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B5F728571C27F5B400519751 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -108,13 +110,13 @@
 				B5687D621BB45AFC00168B7E /* Animo.h */,
 				B5687DA81BB78EA800168B7E /* Animo.swift */,
 				B5181CA81BC574830095A2B8 /* Transition.swift */,
-				B5C2A2B31BC17E0000E58A73 /* CAAnimation+Animo.swift */,
 				B5687DAA1BB7908800168B7E /* CALayer+Animo.swift */,
 				B5687D791BB45B1400168B7E /* LayerAnimation.swift */,
 				B5687DAC1BB792B100168B7E /* Options.swift */,
 				B5F2E5F01BBEE12600FC246A /* DurationSpan.swift */,
 				B5C2A2B11BC17A3A00E58A73 /* TimingMode.swift */,
 				B5687DAE1BB7AAB500168B7E /* KeyframeValueConvertible.swift */,
+				B58D8DEF1C683E3100632F96 /* Internal */,
 				B5687D641BB45AFC00168B7E /* Info.plist */,
 			);
 			path = Animo;
@@ -127,6 +129,15 @@
 				B5687D701BB45AFC00168B7E /* Info.plist */,
 			);
 			path = AnimoTests;
+			sourceTree = "<group>";
+		};
+		B58D8DEF1C683E3100632F96 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				B58D8DF01C683E3100632F96 /* CAAnimation+AnimoInternals.swift */,
+				B58D8DF21C68404300632F96 /* Transition+AnimoInternals.swift */,
+			);
+			path = Internal;
 			sourceTree = "<group>";
 		};
 		B5F728561C27F5A100519751 /* Frameworks */ = {
@@ -198,7 +209,7 @@
 				LastSwiftMigration = 0710;
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = "John Rommel Estropia";
+				ORGANIZATIONNAME = "eure, Inc.";
 				TargetAttributes = {
 					B5687D5E1BB45AFC00168B7E = {
 						CreatedOnToolsVersion = 7.0;
@@ -249,13 +260,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5181CA91BC574830095A2B8 /* Transition.swift in Sources */,
+				B58D8DF11C683E3100632F96 /* CAAnimation+AnimoInternals.swift in Sources */,
 				B5F2E5F11BBEE12600FC246A /* DurationSpan.swift in Sources */,
 				B5687D7A1BB45B1400168B7E /* LayerAnimation.swift in Sources */,
 				B5687DAF1BB7AAB500168B7E /* KeyframeValueConvertible.swift in Sources */,
 				B5C2A2B21BC17A3A00E58A73 /* TimingMode.swift in Sources */,
 				B5687DAD1BB792B100168B7E /* Options.swift in Sources */,
-				B5C2A2B41BC17E0000E58A73 /* CAAnimation+Animo.swift in Sources */,
 				B5687DAB1BB7908800168B7E /* CALayer+Animo.swift in Sources */,
+				B58D8DF31C68404300632F96 /* Transition+AnimoInternals.swift in Sources */,
 				B5687DA91BB78EA800168B7E /* Animo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,7 +394,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnestropia.Animo;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.eure.ios.Animo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -401,7 +413,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnestropia.Animo;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.eure.ios.Animo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -413,7 +425,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = AnimoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnestropia.AnimoTests;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.eure.ios.AnimoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -423,7 +435,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = AnimoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnestropia.AnimoTests;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.eure.ios.AnimoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

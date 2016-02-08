@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  AnimoDemo
 //
-//  Copyright © 2015 John Rommel Estropia
+//  Copyright © 2016 eureka, Inc.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,13 @@
 import UIKit
 import Animo
 
-class ViewController: UIViewController {
+
+// MARK: - ViewController
+
+final class ViewController: UIViewController {
+    
+    
+    // MARK: UIViewController
 
     override func viewDidAppear(animated: Bool) {
         
@@ -34,11 +40,51 @@ class ViewController: UIViewController {
         
         self.startSqureView1()
         self.startSquareView2()
+        
+        
+        let fromPoint = CGPoint(x: 0, y: 0)
+        let toPoint = CGPoint(x: 20, y: 20)
+        
+        let fromColor = UIColor.redColor()
+        let toColor = UIColor.blueColor()
+        
+        let someView = UIView()
+        
+        
+        let positionAnimation = CABasicAnimation(keyPath: "position")
+        positionAnimation.duration = 1
+        positionAnimation.fromValue = NSValue(CGPoint: fromPoint)
+        positionAnimation.toValue = NSValue(CGPoint: toPoint)
+        
+        let colorAnimation = CABasicAnimation(keyPath: "backgroundColor")
+        colorAnimation.duration = 1
+        colorAnimation.fromValue = fromColor.CGColor
+        colorAnimation.toValue = toColor.CGColor
+        
+        let animationGroup = CAAnimationGroup()
+        animationGroup.animations = [positionAnimation, colorAnimation]
+        animationGroup.fillMode = kCAFillModeForwards
+        animationGroup.removedOnCompletion = false
+        animationGroup.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        
+        someView.layer.addAnimation(animationGroup, forKey: "animationGroup")
+        
+        
+        someView.layer.runAnimation(
+            Animo.group(
+                Animo.move(from: fromPoint, to: toPoint, duration: 1),
+                Animo.keyPath("backgroundColor", from: fromColor, to: toColor, duration: 1),
+                timingMode: .EaseInOut,
+                options: Options(fillMode: .Forwards)
+            )
+        )
     }
     
+    
+    // MARK: Private
 
-    @IBOutlet weak var squareView1: UIView?
-    @IBOutlet weak var squareView2: UIView?
+    @IBOutlet private dynamic weak var squareView1: UIView?
+    @IBOutlet private dynamic weak var squareView2: UIView?
     
     private func startSqureView1() {
         
