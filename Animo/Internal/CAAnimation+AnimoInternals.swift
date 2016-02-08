@@ -1,6 +1,6 @@
 //
-//  AppDelegate.swift
-//  AnimoDemo
+//  CAAnimation+AnimoInternals.swift
+//  Animo
 //
 //  Copyright © 2016 eureka, Inc.
 //
@@ -23,22 +23,21 @@
 //  SOFTWARE.
 //
 
-import UIKit
+import Foundation
+import QuartzCore
 
 
-// MARK: - AppDelegate
+// MARK: - CAAnimation
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+internal extension CAAnimation {
     
     
-    // MARK: UIApplicationDelegate
-
-    @objc dynamic var window: UIWindow?
-
-    @objc dynamic func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    // MARK: Internal
+    
+    internal func applyOptions(options: Options = .Default) {
         
-        return true
+        self.speed = Float(options.speed)
+        self.fillMode = options.fillMode
+        self.removedOnCompletion = options.removedOnCompletion
     }
 }
-

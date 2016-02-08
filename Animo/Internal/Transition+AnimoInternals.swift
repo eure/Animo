@@ -1,5 +1,5 @@
 //
-//  DurationSpan.swift
+//  Transition+AnimoInternals.swift
 //  Animo
 //
 //  Copyright © 2016 eureka, Inc.
@@ -23,46 +23,47 @@
 //  SOFTWARE.
 //
 
-import UIKit
+import Foundation
+import QuartzCore
 
 
-// MARK: - DurationSpan
+// MARK: - Transition
 
-public enum DurationSpan: NilLiteralConvertible, FloatLiteralConvertible {
+internal extension Transition {
     
     
-    // MARK: Public
+    // MARK: Internal
     
-    case Automatic
-    case Constant(NSTimeInterval)
-    case Infinite
-    
-    public static let defaultConstant = NSTimeInterval(0.3)
-    
-    
-    // MARK: NilLiteralConvertible
-    
-    public init(nilLiteral: ()) {
+    internal func applyTo(object: CATransition) {
         
-        self = .Automatic
-    }
-    
-    
-    // MARK: FloatLiteralConvertible
-    
-    public init(floatLiteral value: NSTimeInterval) {
+        func subtypeForCATransition(direction: Direction) -> String {
+            
+            switch direction {
+                
+            case .LeftToRight:  return kCATransitionFromLeft
+            case .RightToLeft:  return kCATransitionFromRight
+            case .TopToBottom:  return kCATransitionFromTop
+            case .BottomToTop:  return kCATransitionFromBottom
+            }
+        }
         
-        if value == 0 {
+        switch self {
             
-            self = .Automatic
-        }
-        else if value.isInfinite && value > 0 {
+        case .Fade:
+            object.type = kCATransitionFade
+            object.subtype = nil
             
-            self = .Infinite
-        }
-        else {
+        case .MoveIn(let direction):
+            object.type = kCATransitionMoveIn
+            object.subtype = subtypeForCATransition(direction)
             
-            self = .Constant(value)
+        case .Push(let direction):
+            object.type = kCATransitionPush
+            object.subtype = subtypeForCATransition(direction)
+            
+        case .Reveal(let direction):
+            object.type = kCATransitionReveal
+            object.subtype = subtypeForCATransition(direction)
         }
     }
 }

@@ -2,7 +2,7 @@
 //  KeyframeValueConvertible.swift
 //  Animo
 //
-//  Copyright © 2015 John Rommel Estropia
+//  Copyright © 2016 eureka, Inc.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -149,6 +149,11 @@ extension NSRange: KeyframeValueConvertible {
     public var valueForAnimationKeyframe: NSValue { return NSValue(range: self) }
 }
 
+extension NSObject: KeyframeValueConvertible {
+    
+    public var valueForAnimationKeyframe: AnyObject { return self }
+}
+
 extension UIColor /* : KeyframeValueConvertible */ {
     
     public override var valueForAnimationKeyframe: AnyObject { return self.CGColor }
@@ -162,11 +167,6 @@ extension UIBezierPath /* : KeyframeValueConvertible */ {
 extension UIImage /* : KeyframeValueConvertible */ {
     
     public override var valueForAnimationKeyframe: AnyObject { return self.CGImage! }
-}
-
-extension NSObject: KeyframeValueConvertible {
-    
-    public var valueForAnimationKeyframe: AnyObject { return self }
 }
 
 

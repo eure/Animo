@@ -2,7 +2,7 @@
 //  LayerAnimation.swift
 //  Animo
 //
-//  Copyright © 2015 John Rommel Estropia
+//  Copyright © 2016 eureka, Inc.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -31,10 +31,16 @@ import QuartzCore
 
 public struct LayerAnimation {
     
+    
     // MARK: Public
     
     public let accumulatedDuration: NSTimeInterval
     public let baseDuration: NSTimeInterval
+    
+    public func runOnLayer(layer: CALayer, withKey key: String = NSUUID().UUIDString) -> String {
+        
+        return layer.runAnimation(self, forKey: key)
+    }
     
     
     // MARK: Internal
