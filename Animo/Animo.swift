@@ -23,7 +23,15 @@
 //  SOFTWARE.
 //
 
-import UIKit
+import QuartzCore
+
+#if os(OSX)
+    import AppKit
+    
+#else
+    import UIKit
+    
+#endif
 
 
 // MARK: - Animo
@@ -93,6 +101,24 @@ public enum Animo {
         return self.property(LayerKeyPath.position, from: from, by: by, to: to, duration: duration, timingMode: timingMode, options: options)
     }
     
+    #if os(OSX)
+    public static func move(along path: NSBezierPath, keyTimes: [NSTimeInterval] = [], timingFunctions: [TimingMode] = [], duration: NSTimeInterval, timingMode: TimingMode = .Linear, options: Options = .Default) -> LayerAnimation {
+        
+        let object = CAKeyframeAnimation(keyPath: LayerKeyPath.position)
+        object.path = (path.valueForAnimationKeyframe as! CGPath)
+        
+        if keyTimes.count > 0 {
+            
+            object.keyTimes = keyTimes.map { $0.valueForAnimationKeyframe }
+        }
+        if timingFunctions.count > 0 {
+            
+            object.timingFunctions = timingFunctions.map { $0.timingFunction }
+        }
+        return LayerAnimation(object: object, span: .Constant(duration), timingMode: timingMode, options: options)
+    }
+    
+    #else
     public static func move(along path: UIBezierPath, keyTimes: [NSTimeInterval] = [], timingFunctions: [TimingMode] = [], duration: NSTimeInterval, timingMode: TimingMode = .Linear, options: Options = .Default) -> LayerAnimation {
         
         let object = CAKeyframeAnimation(keyPath: LayerKeyPath.position)
@@ -108,6 +134,8 @@ public enum Animo {
         }
         return LayerAnimation(object: object, span: .Constant(duration), timingMode: timingMode, options: options)
     }
+    
+    #endif
     
     public static func moveX(from from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: NSTimeInterval, timingMode: TimingMode = .Linear, options: Options = .Default) -> LayerAnimation {
         
@@ -127,6 +155,24 @@ public enum Animo {
         return self.property(LayerKeyPath.translation, from: from, by: by, to: to, duration: duration, timingMode: timingMode, options: options)
     }
     
+    #if os(OSX)
+    public static func translate(along path: NSBezierPath, keyTimes: [NSTimeInterval] = [], timingFunctions: [TimingMode] = [], duration: NSTimeInterval, timingMode: TimingMode = .Linear, options: Options = .Default) -> LayerAnimation {
+        
+        let object = CAKeyframeAnimation(keyPath: LayerKeyPath.translation)
+        object.path = (path.valueForAnimationKeyframe as! CGPath)
+        
+        if keyTimes.count > 0 {
+            
+            object.keyTimes = keyTimes.map { $0.valueForAnimationKeyframe }
+        }
+        if timingFunctions.count > 0 {
+            
+            object.timingFunctions = timingFunctions.map { $0.timingFunction }
+        }
+        return LayerAnimation(object: object, span: .Constant(duration), timingMode: timingMode, options: options)
+    }
+    
+    #else
     public static func translate(along path: UIBezierPath, keyTimes: [NSTimeInterval] = [], timingFunctions: [TimingMode] = [], duration: NSTimeInterval, timingMode: TimingMode = .Linear, options: Options = .Default) -> LayerAnimation {
         
         let object = CAKeyframeAnimation(keyPath: LayerKeyPath.translation)
@@ -142,6 +188,8 @@ public enum Animo {
         }
         return LayerAnimation(object: object, span: .Constant(duration), timingMode: timingMode, options: options)
     }
+    
+    #endif
     
     public static func translateX(from from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: NSTimeInterval, timingMode: TimingMode = .Linear, options: Options = .Default) -> LayerAnimation {
         

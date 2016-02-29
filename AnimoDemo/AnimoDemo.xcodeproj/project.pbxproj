@@ -38,6 +38,13 @@
 			remoteGlobalIDString = B5687D5E1BB45AFC00168B7E;
 			remoteInfo = Animo;
 		};
+		B5F3321E1C84521D009475AC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5687D991BB6F0C200168B7E /* Animo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B5F331C31C843944009475AC;
+			remoteInfo = "Animo-OSX";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -112,6 +119,7 @@
 			children = (
 				B5687D9F1BB6F0C200168B7E /* Animo.framework */,
 				B5687DA11BB6F0C200168B7E /* AnimoTests.xctest */,
+				B5F3321F1C84521D009475AC /* Animo.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -189,6 +197,13 @@
 			fileType = wrapper.cfbundle;
 			path = AnimoTests.xctest;
 			remoteRef = B5687DA01BB6F0C200168B7E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B5F3321F1C84521D009475AC /* Animo.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Animo.framework;
+			remoteRef = B5F3321E1C84521D009475AC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

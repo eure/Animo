@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B5687D5E1BB45AFC00168B7E"
+               BlueprintIdentifier = "B5F331C21C843944009475AC"
                BuildableName = "Animo.framework"
-               BlueprintName = "Animo"
+               BlueprintName = "Animo-OSX"
                ReferencedContainer = "container:Animo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,23 +28,13 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B5687D681BB45AFC00168B7E"
-               BuildableName = "AnimoTests.xctest"
-               BlueprintName = "AnimoTests"
-               ReferencedContainer = "container:Animo.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B5687D5E1BB45AFC00168B7E"
             BuildableName = "Animo.framework"
-            BlueprintName = "Animo"
+            BlueprintName = "Animo-iOS"
             ReferencedContainer = "container:Animo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,9 +54,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B5687D5E1BB45AFC00168B7E"
+            BlueprintIdentifier = "B5F331C21C843944009475AC"
             BuildableName = "Animo.framework"
-            BlueprintName = "Animo"
+            BlueprintName = "Animo-OSX"
             ReferencedContainer = "container:Animo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -79,15 +69,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B5687D5E1BB45AFC00168B7E"
-            BuildableName = "Animo.framework"
-            BlueprintName = "Animo"
-            ReferencedContainer = "container:Animo.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

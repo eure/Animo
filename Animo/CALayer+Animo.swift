@@ -23,8 +23,7 @@
 //  SOFTWARE.
 //
 
-import Foundation
-import UIKit
+import QuartzCore
 
 // MARK: - CALayer
 

@@ -155,7 +155,7 @@ to your `Podfile` and run `pod install`
 ### Install with Carthage
 Add
 ```
-github "eure/Animo" >= 1.1.0
+github "eure/Animo" >= 1.2.0
 ```
 to your `Cartfile` and run `carthage update`
 

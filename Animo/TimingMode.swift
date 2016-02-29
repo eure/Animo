@@ -23,7 +23,7 @@
 //  SOFTWARE.
 //
 
-import UIKit
+import QuartzCore
 
 
 // MARK: - TimingMode

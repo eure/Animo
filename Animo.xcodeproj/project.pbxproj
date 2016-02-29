@@ -20,6 +20,22 @@
 		B58D8DF31C68404300632F96 /* Transition+AnimoInternals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D8DF21C68404300632F96 /* Transition+AnimoInternals.swift */; };
 		B5C2A2B21BC17A3A00E58A73 /* TimingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C2A2B11BC17A3A00E58A73 /* TimingMode.swift */; };
 		B5F2E5F11BBEE12600FC246A /* DurationSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F2E5F01BBEE12600FC246A /* DurationSpan.swift */; };
+		B5F331CB1C843B1B009475AC /* Animo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DA81BB78EA800168B7E /* Animo.swift */; };
+		B5F331CC1C843B1E009475AC /* Animo.h in Headers */ = {isa = PBXBuildFile; fileRef = B5687D621BB45AFC00168B7E /* Animo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5F331CD1C843B24009475AC /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5181CA81BC574830095A2B8 /* Transition.swift */; };
+		B5F331CE1C843B27009475AC /* CALayer+Animo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DAA1BB7908800168B7E /* CALayer+Animo.swift */; };
+		B5F331CF1C843B27009475AC /* LayerAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687D791BB45B1400168B7E /* LayerAnimation.swift */; };
+		B5F331D01C843B27009475AC /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DAC1BB792B100168B7E /* Options.swift */; };
+		B5F331D11C843B27009475AC /* DurationSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F2E5F01BBEE12600FC246A /* DurationSpan.swift */; };
+		B5F331D21C843B27009475AC /* TimingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C2A2B11BC17A3A00E58A73 /* TimingMode.swift */; };
+		B5F331D31C843B27009475AC /* KeyframeValueConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687DAE1BB7AAB500168B7E /* KeyframeValueConvertible.swift */; };
+		B5F331D41C843B2C009475AC /* CAAnimation+AnimoInternals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D8DF01C683E3100632F96 /* CAAnimation+AnimoInternals.swift */; };
+		B5F331D51C843B2C009475AC /* Transition+AnimoInternals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D8DF21C68404300632F96 /* Transition+AnimoInternals.swift */; };
+		B5F331D71C843BE4009475AC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F331D61C843BE4009475AC /* CoreGraphics.framework */; };
+		B5F331D91C843BEF009475AC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F331D81C843BEF009475AC /* CoreGraphics.framework */; };
+		B5F331DB1C843BF4009475AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F331DA1C843BF4009475AC /* Foundation.framework */; };
+		B5F331DD1C843BFC009475AC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F331DC1C843BFC009475AC /* QuartzCore.framework */; };
+		B5F331DF1C843C05009475AC /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F331DE1C843C05009475AC /* AppKit.framework */; };
 		B5F728551C27F59B00519751 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F728541C27F59B00519751 /* QuartzCore.framework */; };
 		B5F728581C27F5B400519751 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F728571C27F5B400519751 /* UIKit.framework */; };
 		B5F7285A1C27F5BB00519751 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F728591C27F5BB00519751 /* Foundation.framework */; };
@@ -55,6 +71,12 @@
 		B58D8DF21C68404300632F96 /* Transition+AnimoInternals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Transition+AnimoInternals.swift"; sourceTree = "<group>"; };
 		B5C2A2B11BC17A3A00E58A73 /* TimingMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimingMode.swift; sourceTree = "<group>"; };
 		B5F2E5F01BBEE12600FC246A /* DurationSpan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationSpan.swift; sourceTree = "<group>"; };
+		B5F331C31C843944009475AC /* Animo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Animo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5F331D61C843BE4009475AC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B5F331D81C843BEF009475AC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		B5F331DA1C843BF4009475AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		B5F331DC1C843BFC009475AC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		B5F331DE1C843C05009475AC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		B5F728541C27F59B00519751 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B5F728571C27F5B400519751 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B5F728591C27F5BB00519751 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -65,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F331D71C843BE4009475AC /* CoreGraphics.framework in Frameworks */,
 				B5F7285A1C27F5BB00519751 /* Foundation.framework in Frameworks */,
 				B5F728581C27F5B400519751 /* UIKit.framework in Frameworks */,
 				B5F728551C27F59B00519751 /* QuartzCore.framework in Frameworks */,
@@ -76,6 +99,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5687D6A1BB45AFC00168B7E /* Animo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5F331BF1C843944009475AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5F331DF1C843C05009475AC /* AppKit.framework in Frameworks */,
+				B5F331DD1C843BFC009475AC /* QuartzCore.framework in Frameworks */,
+				B5F331DB1C843BF4009475AC /* Foundation.framework in Frameworks */,
+				B5F331D91C843BEF009475AC /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +134,7 @@
 			children = (
 				B5687D5F1BB45AFC00168B7E /* Animo.framework */,
 				B5687D691BB45AFC00168B7E /* AnimoTests.xctest */,
+				B5F331C31C843944009475AC /* Animo.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,7 +178,12 @@
 		B5F728561C27F5A100519751 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5F331DE1C843C05009475AC /* AppKit.framework */,
+				B5F331D81C843BEF009475AC /* CoreGraphics.framework */,
+				B5F331D61C843BE4009475AC /* CoreGraphics.framework */,
+				B5F331DA1C843BF4009475AC /* Foundation.framework */,
 				B5F728591C27F5BB00519751 /* Foundation.framework */,
+				B5F331DC1C843BFC009475AC /* QuartzCore.framework */,
 				B5F728541C27F59B00519751 /* QuartzCore.framework */,
 				B5F728571C27F5B400519751 /* UIKit.framework */,
 			);
@@ -161,12 +201,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B5F331C01C843944009475AC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5F331CC1C843B1E009475AC /* Animo.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		B5687D5E1BB45AFC00168B7E /* Animo */ = {
+		B5687D5E1BB45AFC00168B7E /* Animo-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B5687D731BB45AFC00168B7E /* Build configuration list for PBXNativeTarget "Animo" */;
+			buildConfigurationList = B5687D731BB45AFC00168B7E /* Build configuration list for PBXNativeTarget "Animo-iOS" */;
 			buildPhases = (
 				B5687D5A1BB45AFC00168B7E /* Sources */,
 				B5687D5B1BB45AFC00168B7E /* Frameworks */,
@@ -177,7 +225,7 @@
 			);
 			dependencies = (
 			);
-			name = Animo;
+			name = "Animo-iOS";
 			productName = Animo;
 			productReference = B5687D5F1BB45AFC00168B7E /* Animo.framework */;
 			productType = "com.apple.product-type.framework";
@@ -200,6 +248,24 @@
 			productReference = B5687D691BB45AFC00168B7E /* AnimoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		B5F331C21C843944009475AC /* Animo-OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5F331C81C843944009475AC /* Build configuration list for PBXNativeTarget "Animo-OSX" */;
+			buildPhases = (
+				B5F331BE1C843944009475AC /* Sources */,
+				B5F331BF1C843944009475AC /* Frameworks */,
+				B5F331C01C843944009475AC /* Headers */,
+				B5F331C11C843944009475AC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Animo-OSX";
+			productName = "Animo-OSX";
+			productReference = B5F331C31C843944009475AC /* Animo.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -217,6 +283,9 @@
 					B5687D681BB45AFC00168B7E = {
 						CreatedOnToolsVersion = 7.0;
 					};
+					B5F331C21C843944009475AC = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
 				};
 			};
 			buildConfigurationList = B5687D591BB45AFC00168B7E /* Build configuration list for PBXProject "Animo" */;
@@ -231,8 +300,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B5687D5E1BB45AFC00168B7E /* Animo */,
+				B5687D5E1BB45AFC00168B7E /* Animo-iOS */,
 				B5687D681BB45AFC00168B7E /* AnimoTests */,
+				B5F331C21C843944009475AC /* Animo-OSX */,
 			);
 		};
 /* End PBXProject section */
@@ -246,6 +316,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B5687D671BB45AFC00168B7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5F331C11C843944009475AC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -280,12 +357,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B5F331BE1C843944009475AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5F331CF1C843B27009475AC /* LayerAnimation.swift in Sources */,
+				B5F331CD1C843B24009475AC /* Transition.swift in Sources */,
+				B5F331D41C843B2C009475AC /* CAAnimation+AnimoInternals.swift in Sources */,
+				B5F331CE1C843B27009475AC /* CALayer+Animo.swift in Sources */,
+				B5F331D21C843B27009475AC /* TimingMode.swift in Sources */,
+				B5F331D01C843B27009475AC /* Options.swift in Sources */,
+				B5F331CB1C843B1B009475AC /* Animo.swift in Sources */,
+				B5F331D11C843B27009475AC /* DurationSpan.swift in Sources */,
+				B5F331D51C843B2C009475AC /* Transition+AnimoInternals.swift in Sources */,
+				B5F331D31C843B27009475AC /* KeyframeValueConvertible.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		B5687D6C1BB45AFC00168B7E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B5687D5E1BB45AFC00168B7E /* Animo */;
+			target = B5687D5E1BB45AFC00168B7E /* Animo-iOS */;
 			targetProxy = B5687D6B1BB45AFC00168B7E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -329,9 +423,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Animo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.eure.Animo;
+				PRODUCT_NAME = Animo;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -372,8 +469,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Animo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.eure.Animo;
+				PRODUCT_NAME = Animo;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -386,16 +486,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Animo/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = jp.eure.ios.Animo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -405,16 +501,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Animo/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = jp.eure.ios.Animo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
@@ -440,6 +532,40 @@
 			};
 			name = Release;
 		};
+		B5F331C91C843944009475AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B5F331CA1C843944009475AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -452,7 +578,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B5687D731BB45AFC00168B7E /* Build configuration list for PBXNativeTarget "Animo" */ = {
+		B5687D731BB45AFC00168B7E /* Build configuration list for PBXNativeTarget "Animo-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B5687D741BB45AFC00168B7E /* Debug */,
@@ -466,6 +592,15 @@
 			buildConfigurations = (
 				B5687D771BB45AFC00168B7E /* Debug */,
 				B5687D781BB45AFC00168B7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5F331C81C843944009475AC /* Build configuration list for PBXNativeTarget "Animo-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5F331C91C843944009475AC /* Debug */,
+				B5F331CA1C843944009475AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
