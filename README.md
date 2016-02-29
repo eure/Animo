@@ -145,7 +145,7 @@ someView.layer.runAnimation(
 )
 ```
 
-### Install with Cocoapods
+### Install with CocoaPods
 Add
 ```
 pod 'Animo'
