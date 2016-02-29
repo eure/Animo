@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
     s.ios.frameworks = "Foundation", "CoreGraphics", "QuartzCore", "UIKit"
     s.osx.frameworks = "Foundation", "CoreGraphics", "QuartzCore", "AppKit"
     s.watchos.frameworks = "Foundation", "CoreGraphics", "QuartzCore", "UIKit"
-    s.tvos.frameworks = "Foundation", "CoreGraphics", "QuartzCore", "UIKit""
+    s.tvos.frameworks = "Foundation", "CoreGraphics", "QuartzCore", "UIKit"
     
     s.requires_arc = true
 end
