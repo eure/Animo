@@ -9,14 +9,14 @@ Pod::Spec.new do |s|
     
     s.ios.deployment_target = "8.0"
     s.osx.deployment_target = "10.10"
-    s.watchos.deployment_target = "2.0"
-    s.tvos.deployment_target = "9.0"
-    
+#    s.watchos.deployment_target = "2.0"
+#    s.tvos.deployment_target = "9.0"
+
     s.source_files = "Animo", "Animo/**/*.{swift}"
     s.ios.frameworks = "Foundation", "CoreGraphics", "QuartzCore", "UIKit"
     s.osx.frameworks = "Foundation", "CoreGraphics", "QuartzCore", "AppKit"
-    s.watchos.frameworks = "Foundation", "CoreGraphics", "QuartzCore", "UIKit"
-    s.tvos.frameworks = "Foundation", "CoreGraphics", "QuartzCore", "UIKit"
-    
+#    s.watchos.frameworks = "Foundation", "CoreGraphics", "QuartzCore", "UIKit"
+#    s.tvos.frameworks = "Foundation", "CoreGraphics", "QuartzCore", "UIKit"
+
     s.requires_arc = true
 end
