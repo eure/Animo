@@ -34,7 +34,7 @@ final class ViewController: UIViewController {
     
     // MARK: UIViewController
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
         
@@ -45,36 +45,36 @@ final class ViewController: UIViewController {
         let fromPoint = CGPoint(x: 0, y: 0)
         let toPoint = CGPoint(x: 20, y: 20)
         
-        let fromColor = UIColor.redColor()
-        let toColor = UIColor.blueColor()
+        let fromColor = UIColor.red
+        let toColor = UIColor.blue
         
         let someView = UIView()
         
         
         let positionAnimation = CABasicAnimation(keyPath: "position")
         positionAnimation.duration = 1
-        positionAnimation.fromValue = NSValue(CGPoint: fromPoint)
-        positionAnimation.toValue = NSValue(CGPoint: toPoint)
+        positionAnimation.fromValue = NSValue(cgPoint: fromPoint)
+        positionAnimation.toValue = NSValue(cgPoint: toPoint)
         
         let colorAnimation = CABasicAnimation(keyPath: "backgroundColor")
         colorAnimation.duration = 1
-        colorAnimation.fromValue = fromColor.CGColor
-        colorAnimation.toValue = toColor.CGColor
+        colorAnimation.fromValue = fromColor.cgColor
+        colorAnimation.toValue = toColor.cgColor
         
         let animationGroup = CAAnimationGroup()
         animationGroup.animations = [positionAnimation, colorAnimation]
         animationGroup.fillMode = kCAFillModeForwards
-        animationGroup.removedOnCompletion = false
+        animationGroup.isRemovedOnCompletion = false
         animationGroup.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         
-        someView.layer.addAnimation(animationGroup, forKey: "animationGroup")
+        someView.layer.add(animationGroup, forKey: "animationGroup")
         
         
-        someView.layer.runAnimation(
+        _ = someView.layer.runAnimation(
             Animo.group(
                 Animo.move(from: fromPoint, to: toPoint, duration: 1),
                 Animo.keyPath("backgroundColor", from: fromColor, to: toColor, duration: 1),
-                timingMode: .EaseInOut,
+                timingMode: .easeInOut,
                 options: Options(fillMode: .Forwards)
             )
         )
@@ -88,14 +88,14 @@ final class ViewController: UIViewController {
     
     private func startSqureView1() {
         
-        self.squareView1?.layer.runAnimation(
+        _ = self.squareView1?.layer.runAnimation(
             Animo.replayForever(
                 Animo.group(
                     Animo.autoreverse(
                         Animo.rotateDegrees(
                             by: 360,
                             duration: 1.5,
-                            timingMode: .EaseInOutSine
+                            timingMode: .easeInOutSine
                         )
                     ),
                     Animo.sequence(
@@ -104,7 +104,7 @@ final class ViewController: UIViewController {
                             Animo.move(
                                 to: CGPoint(x: 200, y: 100),
                                 duration: 1,
-                                timingMode: .EaseInOutSine
+                                timingMode: .easeInOutSine
                             )
                         )
                     ),
@@ -113,7 +113,7 @@ final class ViewController: UIViewController {
                             "cornerRadius",
                             to: self.squareView1?.layer.bounds.width ?? 0,
                             duration: 1.5,
-                            timingMode: .EaseInOutSine
+                            timingMode: .easeInOutSine
                         )
                     ),
                     Animo.autoreverse(
@@ -126,22 +126,22 @@ final class ViewController: UIViewController {
                     Animo.sequence(
                         Animo.keyPath(
                             "backgroundColor",
-                            from: UIColor.redColor(),
-                            to: UIColor.blueColor(),
+                            from: UIColor.red,
+                            to: UIColor.blue,
                             duration: 1,
-                            timingMode: .EaseInOut
+                            timingMode: .easeInOut
                         ),
                         Animo.keyPath(
                             "backgroundColor",
-                            to: UIColor.yellowColor(),
+                            to: UIColor.yellow,
                             duration: 1,
-                            timingMode: .EaseInOut
+                            timingMode: .easeInOut
                         ),
                         Animo.keyPath(
                             "backgroundColor",
-                            to: UIColor.redColor(),
+                            to: UIColor.red,
                             duration: 1,
-                            timingMode: .EaseInOut
+                            timingMode: .easeInOut
                         )
                     )
                 )
@@ -151,7 +151,7 @@ final class ViewController: UIViewController {
     
     private func startSquareView2() {
         
-        self.squareView2?.layer.runAnimation(
+        _ = self.squareView2?.layer.runAnimation(
             Animo.sequence(
                 Animo.wait(1),
                 Animo.replayForever(
@@ -159,46 +159,46 @@ final class ViewController: UIViewController {
                         Animo.move(
                             by: CGPoint(x: 100, y: 200),
                             duration: 2,
-                            timingMode: .EaseInOutBack
+                            timingMode: .easeInOutBack
                         ),
                         Animo.rotateDegrees(
                             by: -180,
                             duration: 1,
-                            timingMode: .EaseInOutBack
+                            timingMode: .easeInOutBack
                         ),
                         Animo.group(
                             Animo.scaleX(
                                 by: 2,
                                 duration: 1,
-                                timingMode: .EaseInOutBack
+                                timingMode: .easeInOutBack
                             ),
                             Animo.scaleY(
                                 by: 0.5,
                                 duration: 1,
-                                timingMode: .EaseInOutBack
+                                timingMode: .easeInOutBack
                             )
                         ),
                         Animo.wait(1),
                         Animo.move(
                             by: CGPoint(x: -100, y: -200),
                             duration: 2,
-                            timingMode: .EaseInOutBack
+                            timingMode: .easeInOutBack
                         ),
                         Animo.rotateDegrees(
                             by: 180,
                             duration: 1,
-                            timingMode: .EaseInOutBack
+                            timingMode: .easeInOutBack
                         ),
                         Animo.group(
                             Animo.scaleX(
                                 to: 1,
                                 duration: 1,
-                                timingMode: .EaseInOutBack
+                                timingMode: .easeInOutBack
                             ),
                             Animo.scaleY(
                                 to: 1,
                                 duration: 1,
-                                timingMode: .EaseInOutBack
+                                timingMode: .easeInOutBack
                             )
                         )
                     )
