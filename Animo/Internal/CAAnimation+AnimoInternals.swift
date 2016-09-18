@@ -34,7 +34,7 @@ internal extension CAAnimation {
     
     // MARK: Internal
     
-    internal func applyOptions(_ options: Options = .Default) {
+    internal func applyOptions(_ options: Options = .default) {
         
         self.speed = Float(options.speed)
         self.fillMode = options.fillMode

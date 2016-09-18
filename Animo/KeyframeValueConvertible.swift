@@ -157,7 +157,7 @@ extension CGAffineTransform: KeyframeValueConvertible {
         
         #if os(OSX)
             var value = self
-            return NSValue(&value, withObjCType: ("{CGAffineTransform=dddddd}" as NSString).UTF8String)
+            return NSValue(&value, withObjCType: ("{CGAffineTransform=dddddd}" as NSString).utf8String!)
             
         #else
             return NSValue(cgAffineTransform: self)
@@ -172,7 +172,7 @@ extension CGVector: KeyframeValueConvertible {
         
         #if os(OSX)
             var value = self
-            return NSValue(&value, withObjCType: ("{CGVector=dd}" as NSString).UTF8String)
+            return NSValue(&value, withObjCType: ("{CGVector=dd}" as NSString).utf8String!)
             
         #else
             return NSValue(cgVector: self)
@@ -187,7 +187,7 @@ extension CATransform3D: KeyframeValueConvertible {
 }
 
 #if os(OSX)
-    extension NSEdgeInsets: KeyframeValueConvertible {
+    extension EdgeInsets: KeyframeValueConvertible {
         
         public var valueForAnimationKeyframe: NSValue { return NSValue(edgeInsets: self) }
     }
@@ -218,41 +218,41 @@ extension NSObject: KeyframeValueConvertible {
 #if os(OSX)
     extension NSColor /* : KeyframeValueConvertible */ {
         
-        public override var valueForAnimationKeyframe: AnyObject { return self.CGColor }
+        public override var valueForAnimationKeyframe: AnyObject { return self.cgColor }
     }
     
     extension NSBezierPath /* : KeyframeValueConvertible */ {
         
         public override var valueForAnimationKeyframe: AnyObject {
             
-            let path = CGPathCreateMutable()
+            let path = CGMutablePath()
             
             var didClosePath = true
             for index in 0 ..< self.elementCount {
                 
-                var points = Array<CGPoint>(count: 3, repeatedValue: .zero)
-                switch self.elementAtIndex(index, associatedPoints: &points) {
+                var points = Array<CGPoint>(repeating: .zero, count: 3)
+                switch self.element(at: index, associatedPoints: &points) {
                     
-                case .MoveToBezierPathElement:
-                    CGPathMoveToPoint(path, nil, points[0].x, points[0].y)
+                case .moveToBezierPathElement:
+                    path.move(to: points[0])
                     
-                case .LineToBezierPathElement:
-                    CGPathAddLineToPoint(path, nil, points[0].x, points[0].y)
+                case .lineToBezierPathElement:
+                    path.addLine(to: points[0])
                     didClosePath = false
                     
-                case .CurveToBezierPathElement:
-                    CGPathAddCurveToPoint(path, nil, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y)
+                case .curveToBezierPathElement:
+                    path.addCurve(to: points[0], control1: points[1], control2: points[2])
                     didClosePath = false
                     
-                case .ClosePathBezierPathElement:
-                    CGPathCloseSubpath(path)
+                case .closePathBezierPathElement:
+                    path.closeSubpath()
                     didClosePath = true
                 }
             }
             
             if !didClosePath {
                 
-                CGPathCloseSubpath(path)
+                path.closeSubpath()
             }
             return path
         }
@@ -262,7 +262,7 @@ extension NSObject: KeyframeValueConvertible {
         
         public override var valueForAnimationKeyframe: AnyObject {
             
-            return self.CGImageForProposedRect(nil, context: nil, hints: nil)!
+            return self.cgImage(forProposedRect: nil, context: nil, hints: nil)!
         }
     }
     

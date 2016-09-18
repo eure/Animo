@@ -41,12 +41,12 @@ public enum Animo {
     
     // MARK: Grouping
     
-    public static func group(_ animations: LayerAnimation..., span: DurationSpan = .automatic, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func group(_ animations: LayerAnimation..., span: DurationSpan = .automatic, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         return self.group(animations, span: span, timingMode: timingMode, options: options)
     }
     
-    public static func group<S: Sequence>(_ animations: S, span: DurationSpan = .automatic, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation where S.Iterator.Element == LayerAnimation {
+    public static func group<S: Sequence>(_ animations: S, span: DurationSpan = .automatic, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation where S.Iterator.Element == LayerAnimation {
         
         return LayerAnimation(group: CAAnimationGroup(), children: animations, span: span, timingMode: timingMode, options: options)
     }
@@ -54,12 +54,12 @@ public enum Animo {
     
     // MARK: Sequencing
     
-    public static func sequence(_ animations: LayerAnimation..., span: DurationSpan = .automatic, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func sequence(_ animations: LayerAnimation..., span: DurationSpan = .automatic, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         return self.sequence(animations, span: span, timingMode: timingMode, options: options)
     }
     
-    public static func sequence<S: Sequence>(_ animations: S, span: DurationSpan = .automatic, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation where S.Iterator.Element == LayerAnimation {
+    public static func sequence<S: Sequence>(_ animations: S, span: DurationSpan = .automatic, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation where S.Iterator.Element == LayerAnimation {
         
         return LayerAnimation(sequence: CAAnimationGroup(), children: animations, span: span, timingMode: timingMode, options: options)
     }
@@ -96,13 +96,13 @@ public enum Animo {
     
     // MARK: Positioning
     
-    public static func move(from: CGPoint? = nil, by: CGPoint? = nil, to: CGPoint? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func move(from: CGPoint? = nil, by: CGPoint? = nil, to: CGPoint? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         return self.property(LayerKeyPath.position, from: from, by: by, to: to, duration: duration, timingMode: timingMode, options: options)
     }
     
     #if os(OSX)
-    public static func move(along path: NSBezierPath, keyTimes: [NSTimeInterval] = [], timingFunctions: [TimingMode] = [], duration: NSTimeInterval, timingMode: TimingMode = .Linear, options: Options = .Default) -> LayerAnimation {
+    public static func move(along path: NSBezierPath, keyTimes: [TimeInterval] = [], timingFunctions: [TimingMode] = [], duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         let object = CAKeyframeAnimation(keyPath: LayerKeyPath.position)
         object.path = (path.valueForAnimationKeyframe as! CGPath)
@@ -115,11 +115,11 @@ public enum Animo {
             
             object.timingFunctions = timingFunctions.map { $0.timingFunction }
         }
-        return LayerAnimation(object: object, span: .Constant(duration), timingMode: timingMode, options: options)
+        return LayerAnimation(object: object, span: .constant(duration), timingMode: timingMode, options: options)
     }
     
     #else
-    public static func move(along path: UIBezierPath, keyTimes: [TimeInterval] = [], timingFunctions: [TimingMode] = [], duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func move(along path: UIBezierPath, keyTimes: [TimeInterval] = [], timingFunctions: [TimingMode] = [], duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         let object = CAKeyframeAnimation(keyPath: LayerKeyPath.position)
         object.path = path.cgPath
@@ -137,12 +137,12 @@ public enum Animo {
     
     #endif
     
-    public static func moveX(from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func moveX(from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         return self.property(LayerKeyPath.positionX, from: from, by: by, to: to, duration: duration, timingMode: timingMode, options: options)
     }
     
-    public static func moveY(from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func moveY(from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         return self.property(LayerKeyPath.positionY, from: from, by: by, to: to, duration: duration, timingMode: timingMode, options: options)
     }
@@ -150,13 +150,13 @@ public enum Animo {
     
     // MARK: Translating
     
-    public static func translate(from: CGPoint? = nil, by: CGPoint? = nil, to: CGPoint? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func translate(from: CGPoint? = nil, by: CGPoint? = nil, to: CGPoint? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         return self.property(LayerKeyPath.translation, from: from, by: by, to: to, duration: duration, timingMode: timingMode, options: options)
     }
     
     #if os(OSX)
-    public static func translate(along path: NSBezierPath, keyTimes: [NSTimeInterval] = [], timingFunctions: [TimingMode] = [], duration: NSTimeInterval, timingMode: TimingMode = .Linear, options: Options = .Default) -> LayerAnimation {
+    public static func translate(along path: NSBezierPath, keyTimes: [TimeInterval] = [], timingFunctions: [TimingMode] = [], duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         let object = CAKeyframeAnimation(keyPath: LayerKeyPath.translation)
         object.path = (path.valueForAnimationKeyframe as! CGPath)
@@ -169,11 +169,11 @@ public enum Animo {
             
             object.timingFunctions = timingFunctions.map { $0.timingFunction }
         }
-        return LayerAnimation(object: object, span: .Constant(duration), timingMode: timingMode, options: options)
+        return LayerAnimation(object: object, span: .constant(duration), timingMode: timingMode, options: options)
     }
     
     #else
-    public static func translate(along path: UIBezierPath, keyTimes: [TimeInterval] = [], timingFunctions: [TimingMode] = [], duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func translate(along path: UIBezierPath, keyTimes: [TimeInterval] = [], timingFunctions: [TimingMode] = [], duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         let object = CAKeyframeAnimation(keyPath: LayerKeyPath.translation)
         object.path = path.cgPath
@@ -191,12 +191,12 @@ public enum Animo {
     
     #endif
     
-    public static func translateX(from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func translateX(from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         return self.property(LayerKeyPath.translationX, from: from, by: by, to: to, duration: duration, timingMode: timingMode, options: options)
     }
     
-    public static func translateY(from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func translateY(from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         return self.property(LayerKeyPath.translationY, from: from, by: by, to: to, duration: duration, timingMode: timingMode, options: options)
     }
@@ -204,12 +204,12 @@ public enum Animo {
     
     // MARK: Rotating
     
-    public static func rotateDegrees<T: FloatingPointKeyframeValueConvertible>(from: T? = nil, by: T? = nil, to: T? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func rotateDegrees<T: FloatingPointKeyframeValueConvertible>(from: T? = nil, by: T? = nil, to: T? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         return self.property(LayerKeyPath.rotation, from: from?.degreesToRadians, by: by?.degreesToRadians, to: to?.degreesToRadians, duration: duration, timingMode: timingMode, options: options)
     }
     
-    public static func rotateRadians<T: FloatingPointKeyframeValueConvertible>(from: T? = nil, by: T? = nil, to: T? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func rotateRadians<T: FloatingPointKeyframeValueConvertible>(from: T? = nil, by: T? = nil, to: T? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         return self.property(LayerKeyPath.rotation, from: from, by: by, to: to, duration: duration, timingMode: timingMode, options: options)
     }
@@ -217,32 +217,32 @@ public enum Animo {
     
     // MARK: Scaling
     
-    public static func scale(from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func scale(from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         return self.property(LayerKeyPath.scale, from: from, by: by, to: to, duration: duration, timingMode: timingMode, options: options)
     }
     
-    public static func scale(from: CGSize? = nil, by: CGSize? = nil, to: CGSize? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func scale(from: CGSize? = nil, by: CGSize? = nil, to: CGSize? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         return self.group(
-            self.property(LayerKeyPath.scaleX, from: from?.width, by: by?.width, to: to?.width, duration: duration, timingMode: timingMode, options: .Default),
-            self.property(LayerKeyPath.scaleY, from: from?.height, by: by?.height, to: to?.height, duration: duration, timingMode: timingMode, options: .Default),
+            self.property(LayerKeyPath.scaleX, from: from?.width, by: by?.width, to: to?.width, duration: duration, timingMode: timingMode, options: .default),
+            self.property(LayerKeyPath.scaleY, from: from?.height, by: by?.height, to: to?.height, duration: duration, timingMode: timingMode, options: .default),
             span: .constant(duration),
             options: options
         )
     }
     
-    public static func scaleX(from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func scaleX(from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         return self.property(LayerKeyPath.scaleX, from: from, by: by, to: to, duration: duration, timingMode: timingMode, options: options)
     }
     
-    public static func scaleY(from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func scaleY(from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         return self.property(LayerKeyPath.scaleY, from: from, by: by, to: to, duration: duration, timingMode: timingMode, options: options)
     }
     
-    public static func scaleZ(from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func scaleZ(from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         return self.property(LayerKeyPath.scaleZ, from: from, by: by, to: to, duration: duration, timingMode: timingMode, options: options)
     }
@@ -250,17 +250,17 @@ public enum Animo {
     
     // MARK: Fading
     
-    public static func fadeIn(duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func fadeIn(duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         return self.property(LayerKeyPath.opacity, to: 1, duration: duration, timingMode: timingMode, options: options)
     }
     
-    public static func fadeOut(duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func fadeOut(duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         return self.property(LayerKeyPath.opacity, to: 0, duration: duration, timingMode: timingMode, options: options)
     }
     
-    public static func fade(from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func fade(from: CGFloat? = nil, by: CGFloat? = nil, to: CGFloat? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         return self.property(LayerKeyPath.opacity, from: from, by: by, to: to, duration: duration, timingMode: timingMode, options: options)
     }
@@ -268,7 +268,7 @@ public enum Animo {
     
     // MARK: Custom Animations
     
-    public static func keyPath<T: KeyframeValueConvertible>(_ keyPath: String, from: T? = nil, by: T? = nil, to: T? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .Default) -> LayerAnimation {
+    public static func keyPath<T: KeyframeValueConvertible>(_ keyPath: String, from: T? = nil, by: T? = nil, to: T? = nil, duration: TimeInterval, timingMode: TimingMode = .linear, options: Options = .default) -> LayerAnimation {
         
         return self.property(keyPath, from: from, by: by, to: to, duration: duration, timingMode: timingMode, options: options)
     }

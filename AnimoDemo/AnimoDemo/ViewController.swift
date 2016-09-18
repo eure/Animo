@@ -75,7 +75,7 @@ final class ViewController: UIViewController {
                 Animo.move(from: fromPoint, to: toPoint, duration: 1),
                 Animo.keyPath("backgroundColor", from: fromColor, to: toColor, duration: 1),
                 timingMode: .easeInOut,
-                options: Options(fillMode: .Forwards)
+                options: Options(fillMode: .forwards)
             )
         )
     }
