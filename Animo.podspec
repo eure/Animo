@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name = "Animo"
-    s.version = "1.2.0"
+    s.version = "1.3.0"
     s.license = "MIT"
     s.summary = "Bring life to CALayers with SpriteKit-like animation builders."
     s.homepage = "https://github.com/eure/Animo"

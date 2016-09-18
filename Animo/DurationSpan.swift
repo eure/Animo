@@ -26,41 +26,41 @@
 
 // MARK: - DurationSpan
 
-public enum DurationSpan: NilLiteralConvertible, FloatLiteralConvertible {
+public enum DurationSpan: ExpressibleByNilLiteral, ExpressibleByFloatLiteral {
     
     
     // MARK: Public
     
-    case Automatic
-    case Constant(NSTimeInterval)
-    case Infinite
+    case automatic
+    case constant(TimeInterval)
+    case infinite
     
-    public static let defaultConstant = NSTimeInterval(0.3)
+    public static let defaultConstant = TimeInterval(0.3)
     
     
     // MARK: NilLiteralConvertible
     
     public init(nilLiteral: ()) {
         
-        self = .Automatic
+        self = .automatic
     }
     
     
     // MARK: FloatLiteralConvertible
     
-    public init(floatLiteral value: NSTimeInterval) {
+    public init(floatLiteral value: TimeInterval) {
         
         if value == 0 {
             
-            self = .Automatic
+            self = .automatic
         }
         else if value.isInfinite && value > 0 {
             
-            self = .Infinite
+            self = .infinite
         }
         else {
             
-            self = .Constant(value)
+            self = .constant(value)
         }
     }
 }

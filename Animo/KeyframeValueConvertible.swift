@@ -36,7 +36,7 @@
 
 public protocol KeyframeValueConvertible {
     
-    typealias ValueType: AnyObject
+    associatedtype ValueType: AnyObject
     
     var valueForAnimationKeyframe: ValueType { get }
 }
@@ -46,67 +46,67 @@ public protocol KeyframeValueConvertible {
 
 extension Int8: KeyframeValueConvertible {
     
-    public var valueForAnimationKeyframe: NSNumber { return NSNumber(char: self) }
+    public var valueForAnimationKeyframe: NSNumber { return NSNumber(value: self as Int8) }
 }
 
 extension Int16: KeyframeValueConvertible {
     
-    public var valueForAnimationKeyframe: NSNumber { return NSNumber(short: self) }
+    public var valueForAnimationKeyframe: NSNumber { return NSNumber(value: self as Int16) }
 }
 
 extension Int32: KeyframeValueConvertible {
     
-    public var valueForAnimationKeyframe: NSNumber { return NSNumber(int: self) }
+    public var valueForAnimationKeyframe: NSNumber { return NSNumber(value: self as Int32) }
 }
 
 extension Int64: KeyframeValueConvertible {
     
-    public var valueForAnimationKeyframe: NSNumber { return NSNumber(longLong: self) }
+    public var valueForAnimationKeyframe: NSNumber { return NSNumber(value: self as Int64) }
 }
 
 extension UInt8: KeyframeValueConvertible {
     
-    public var valueForAnimationKeyframe: NSNumber { return NSNumber(unsignedChar: self) }
+    public var valueForAnimationKeyframe: NSNumber { return NSNumber(value: self as UInt8) }
 }
 
 extension UInt16: KeyframeValueConvertible {
     
-    public var valueForAnimationKeyframe: NSNumber { return NSNumber(unsignedShort: self) }
+    public var valueForAnimationKeyframe: NSNumber { return NSNumber(value: self as UInt16) }
 }
 
 extension UInt32: KeyframeValueConvertible {
     
-    public var valueForAnimationKeyframe: NSNumber { return NSNumber(unsignedInt: self) }
+    public var valueForAnimationKeyframe: NSNumber { return NSNumber(value: self as UInt32) }
 }
 
 extension UInt64: KeyframeValueConvertible {
     
-    public var valueForAnimationKeyframe: NSNumber { return NSNumber(unsignedLongLong: self) }
+    public var valueForAnimationKeyframe: NSNumber { return NSNumber(value: self as UInt64) }
 }
 
 extension Int: KeyframeValueConvertible {
     
-    public var valueForAnimationKeyframe: NSNumber { return NSNumber(integer: self) }
+    public var valueForAnimationKeyframe: NSNumber { return NSNumber(value: self as Int) }
 }
 
 extension UInt: KeyframeValueConvertible {
     
-    public var valueForAnimationKeyframe: NSNumber { return NSNumber(unsignedLong: self) }
+    public var valueForAnimationKeyframe: NSNumber { return NSNumber(value: self as UInt) }
 }
 
 extension CGFloat: KeyframeValueConvertible {
     
-    public var valueForAnimationKeyframe: NSNumber { return NSNumber(double: Double(self)) }
+    public var valueForAnimationKeyframe: NSNumber { return NSNumber(value: Double(self) as Double) }
 }
 
 extension Double: KeyframeValueConvertible {
     
-    public var valueForAnimationKeyframe: NSNumber { return NSNumber(double: self) }
+    public var valueForAnimationKeyframe: NSNumber { return NSNumber(value: self as Double) }
 }
 
 extension Float: KeyframeValueConvertible {
     
-    public var valueForAnimationKeyframe: NSNumber { return NSNumber(float: self) }
+    public var valueForAnimationKeyframe: NSNumber { return NSNumber(value: self as Float) }
 }
 
 extension CGPoint: KeyframeValueConvertible {
@@ -117,7 +117,7 @@ extension CGPoint: KeyframeValueConvertible {
             return NSValue(point: self)
             
         #else
-            return NSValue(CGPoint: self)
+            return NSValue(cgPoint: self)
             
         #endif
     }
@@ -131,7 +131,7 @@ extension CGSize: KeyframeValueConvertible {
             return NSValue(size: self)
             
         #else
-            return NSValue(CGSize: self)
+            return NSValue(cgSize: self)
             
         #endif
     }
@@ -145,7 +145,7 @@ extension CGRect: KeyframeValueConvertible {
             return NSValue(rect: self)
             
         #else
-            return NSValue(CGRect: self)
+            return NSValue(cgRect: self)
             
         #endif
     }
@@ -160,7 +160,7 @@ extension CGAffineTransform: KeyframeValueConvertible {
             return NSValue(&value, withObjCType: ("{CGAffineTransform=dddddd}" as NSString).UTF8String)
             
         #else
-            return NSValue(CGAffineTransform: self)
+            return NSValue(cgAffineTransform: self)
             
         #endif
     }
@@ -175,7 +175,7 @@ extension CGVector: KeyframeValueConvertible {
             return NSValue(&value, withObjCType: ("{CGVector=dd}" as NSString).UTF8String)
             
         #else
-            return NSValue(CGVector: self)
+            return NSValue(cgVector: self)
             
         #endif
     }
@@ -183,7 +183,7 @@ extension CGVector: KeyframeValueConvertible {
 
 extension CATransform3D: KeyframeValueConvertible {
     
-    public var valueForAnimationKeyframe: NSValue { return NSValue(CATransform3D: self) }
+    public var valueForAnimationKeyframe: NSValue { return NSValue(caTransform3D: self) }
 }
 
 #if os(OSX)
@@ -195,12 +195,12 @@ extension CATransform3D: KeyframeValueConvertible {
 #else
     extension UIEdgeInsets: KeyframeValueConvertible {
         
-        public var valueForAnimationKeyframe: NSValue { return NSValue(UIEdgeInsets: self) }
+        public var valueForAnimationKeyframe: NSValue { return NSValue(uiEdgeInsets: self) }
     }
     
     extension UIOffset: KeyframeValueConvertible {
         
-        public var valueForAnimationKeyframe: NSValue { return NSValue(UIOffset: self) }
+        public var valueForAnimationKeyframe: NSValue { return NSValue(uiOffset: self) }
     }
     
 #endif
@@ -269,17 +269,17 @@ extension NSObject: KeyframeValueConvertible {
 #else
     extension UIColor /* : KeyframeValueConvertible */ {
         
-        public override var valueForAnimationKeyframe: AnyObject { return self.CGColor }
+        public override var valueForAnimationKeyframe: AnyObject { return self.cgColor }
     }
     
     extension UIBezierPath /* : KeyframeValueConvertible */ {
         
-        public override var valueForAnimationKeyframe: AnyObject { return self.CGPath }
+        public override var valueForAnimationKeyframe: AnyObject { return self.cgPath }
     }
     
     extension UIImage /* : KeyframeValueConvertible */ {
         
-        public override var valueForAnimationKeyframe: AnyObject { return self.CGImage! }
+        public override var valueForAnimationKeyframe: AnyObject { return self.cgImage! }
     }
     
 #endif

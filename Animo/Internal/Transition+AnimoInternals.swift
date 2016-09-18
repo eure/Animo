@@ -34,34 +34,34 @@ internal extension Transition {
     
     // MARK: Internal
     
-    internal func applyTo(object: CATransition) {
+    internal func applyTo(_ object: CATransition) {
         
-        func subtypeForCATransition(direction: Direction) -> String {
+        func subtypeForCATransition(_ direction: Direction) -> String {
             
             switch direction {
                 
-            case .LeftToRight:  return kCATransitionFromLeft
-            case .RightToLeft:  return kCATransitionFromRight
-            case .TopToBottom:  return kCATransitionFromTop
-            case .BottomToTop:  return kCATransitionFromBottom
+            case .leftToRight:  return kCATransitionFromLeft
+            case .rightToLeft:  return kCATransitionFromRight
+            case .topToBottom:  return kCATransitionFromTop
+            case .bottomToTop:  return kCATransitionFromBottom
             }
         }
         
         switch self {
             
-        case .Fade:
+        case .fade:
             object.type = kCATransitionFade
             object.subtype = nil
             
-        case .MoveIn(let direction):
+        case .moveIn(let direction):
             object.type = kCATransitionMoveIn
             object.subtype = subtypeForCATransition(direction)
             
-        case .Push(let direction):
+        case .push(let direction):
             object.type = kCATransitionPush
             object.subtype = subtypeForCATransition(direction)
             
-        case .Reveal(let direction):
+        case .reveal(let direction):
             object.type = kCATransitionReveal
             object.subtype = subtypeForCATransition(direction)
         }

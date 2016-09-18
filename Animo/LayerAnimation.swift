@@ -34,10 +34,10 @@ public struct LayerAnimation {
     
     // MARK: Public
     
-    public let accumulatedDuration: NSTimeInterval
-    public let baseDuration: NSTimeInterval
+    public let accumulatedDuration: TimeInterval
+    public let baseDuration: TimeInterval
     
-    public func runOnLayer(layer: CALayer, withKey key: String = NSUUID().UUIDString) -> String {
+    public func runOnLayer(_ layer: CALayer, withKey key: String = UUID().uuidString) -> String {
         
         return layer.runAnimation(self, forKey: key)
     }
@@ -52,10 +52,10 @@ public struct LayerAnimation {
         
         switch span {
             
-        case .Automatic:
+        case .automatic:
             fatalError()
             
-        case .Constant(let seconds):
+        case .constant(let seconds):
             object.duration = seconds
             self.init(
                 object,
@@ -63,12 +63,12 @@ public struct LayerAnimation {
                 accumulatedDuration: seconds
             )
             
-        case .Infinite:
+        case .infinite:
             object.duration = DBL_MAX
             self.init(
                 object,
                 baseDuration: 0,
-                accumulatedDuration: NSTimeInterval.infinity
+                accumulatedDuration: TimeInterval.infinity
             )
         }
     }
@@ -80,7 +80,7 @@ public struct LayerAnimation {
         
         switch span {
             
-        case .Constant(let seconds):
+        case .constant(let seconds):
             object.duration = seconds
             self.init(object, baseDuration: seconds, accumulatedDuration: seconds)
             
@@ -89,16 +89,16 @@ public struct LayerAnimation {
         }
     }
     
-    internal init<S: SequenceType where S.Generator.Element == LayerAnimation>(group object: CAAnimationGroup, children: S, span: DurationSpan, timingMode: TimingMode, options: Options) {
+    internal init<S: Sequence>(group object: CAAnimationGroup, children: S, span: DurationSpan, timingMode: TimingMode, options: Options) where S.Iterator.Element == LayerAnimation {
         
         object.timingFunction = timingMode.timingFunction
         object.applyOptions(options)
         
         switch span {
             
-        case .Automatic:
+        case .automatic:
             let accumulatedDuration = children.maxAccumulatedDuration
-            if case NSTimeInterval.infinity = accumulatedDuration {
+            if case TimeInterval.infinity = accumulatedDuration {
                 
                 object.duration = DBL_MAX
             }
@@ -113,32 +113,32 @@ public struct LayerAnimation {
                 accumulatedDuration: accumulatedDuration
             )
             
-        case .Constant(let seconds):
+        case .constant(let seconds):
             object.duration = seconds
             object.animations = children.map { $0.copyObject() }
             self.init(object, baseDuration: seconds, accumulatedDuration: seconds)
             
-        case .Infinite:
+        case .infinite:
             object.duration = DBL_MAX
             object.animations = children.map { $0.copyObject() }
             self.init(
                 object,
                 baseDuration: children.maxBaseDuration,
-                accumulatedDuration: NSTimeInterval.infinity
+                accumulatedDuration: TimeInterval.infinity
             )
         }
     }
     
-    internal init<S: SequenceType where S.Generator.Element == LayerAnimation>(sequence object: CAAnimationGroup, children: S, span: DurationSpan, timingMode: TimingMode, options: Options) {
+    internal init<S: Sequence>(sequence object: CAAnimationGroup, children: S, span: DurationSpan, timingMode: TimingMode, options: Options) where S.Iterator.Element == LayerAnimation {
         
         object.timingFunction = timingMode.timingFunction
         object.applyOptions(options)
         
         switch span {
             
-        case .Automatic:
+        case .automatic:
             let accumulatedDuration = children.totalAccumulatedDuration
-            if case NSTimeInterval.infinity = accumulatedDuration {
+            if case TimeInterval.infinity = accumulatedDuration {
                 
                 object.duration = DBL_MAX
             }
@@ -146,7 +146,7 @@ public struct LayerAnimation {
                 
                 object.duration = accumulatedDuration
             }
-            var baseDuration = NSTimeInterval(0)
+            var baseDuration = TimeInterval(0)
             object.animations = children.map {
                 
                 let object = $0.copyObject()
@@ -160,9 +160,9 @@ public struct LayerAnimation {
                 accumulatedDuration: accumulatedDuration
             )
             
-        case .Constant(let seconds):
+        case .constant(let seconds):
             object.duration = seconds
-            var baseDuration = NSTimeInterval(0)
+            var baseDuration = TimeInterval(0)
             object.animations = children.map {
                 
                 let object = $0.copyObject()
@@ -176,9 +176,9 @@ public struct LayerAnimation {
                 accumulatedDuration: seconds
             )
             
-        case .Infinite:
+        case .infinite:
             object.duration = DBL_MAX
-            var baseDuration = NSTimeInterval(0)
+            var baseDuration = TimeInterval(0)
             object.animations = children.map {
                 
                 let object = $0.copyObject()
@@ -189,7 +189,7 @@ public struct LayerAnimation {
             self.init(
                 object,
                 baseDuration: baseDuration,
-                accumulatedDuration: NSTimeInterval.infinity
+                accumulatedDuration: TimeInterval.infinity
             )
         }
     }
@@ -206,7 +206,7 @@ public struct LayerAnimation {
             
             let frameCount = count + 1
             copy.repeatCount = Float(count)
-            object.duration = copy.duration * NSTimeInterval(frameCount)
+            object.duration = copy.duration * TimeInterval(frameCount)
             
             self.init(
                 object,
@@ -216,13 +216,13 @@ public struct LayerAnimation {
         }
         else {
             
-            copy.repeatDuration = NSTimeInterval.infinity
+            copy.repeatDuration = TimeInterval.infinity
             object.duration = DBL_MAX
             
             self.init(
                 object,
                 baseDuration: original.baseDuration,
-                accumulatedDuration: NSTimeInterval.infinity
+                accumulatedDuration: TimeInterval.infinity
             )
         }
     }
@@ -239,7 +239,7 @@ public struct LayerAnimation {
         )
     }
     
-    internal init(transition object: CATransition, duration: NSTimeInterval, timingMode: TimingMode, options: Options) {
+    internal init(transition object: CATransition, duration: TimeInterval, timingMode: TimingMode, options: Options) {
         
         object.applyOptions()
         
@@ -250,7 +250,7 @@ public struct LayerAnimation {
         )
     }
     
-    internal init(_ object: CAAnimation, baseDuration: NSTimeInterval, accumulatedDuration: NSTimeInterval) {
+    internal init(_ object: CAAnimation, baseDuration: TimeInterval, accumulatedDuration: TimeInterval) {
         
         self.object = object
         self.baseDuration = baseDuration
@@ -270,65 +270,65 @@ public struct LayerAnimation {
     
     // MARK: Private
     
-    private let object: CAAnimation
+    fileprivate let object: CAAnimation
 }
 
 
 // MARK: Private
 
-private func maxDuration(lhs: NSTimeInterval, _ rhs: NSTimeInterval) -> NSTimeInterval {
+private func maxDuration(_ lhs: TimeInterval, _ rhs: TimeInterval) -> TimeInterval {
     
     switch (lhs, rhs) {
         
-    case (NSTimeInterval.infinity, _), (_, NSTimeInterval.infinity):
-        return NSTimeInterval.infinity
+    case (TimeInterval.infinity, _), (_, TimeInterval.infinity):
+        return TimeInterval.infinity
         
     case (let lhs, let rhs):
         return Swift.max(lhs, rhs)
     }
 }
 
-private func addDuration(lhs: NSTimeInterval, _ rhs: NSTimeInterval) -> NSTimeInterval {
+private func addDuration(_ lhs: TimeInterval, _ rhs: TimeInterval) -> TimeInterval {
     
     switch (lhs, rhs) {
         
-    case (NSTimeInterval.infinity, _), (_, NSTimeInterval.infinity):
-        return NSTimeInterval.infinity
+    case (TimeInterval.infinity, _), (_, TimeInterval.infinity):
+        return TimeInterval.infinity
         
     case (let lhs, let rhs):
         return lhs + rhs
     }
 }
 
-private func multiplyDuration(lhs: NSTimeInterval, by rhs: Int) -> NSTimeInterval {
+private func multiplyDuration(_ lhs: TimeInterval, by rhs: Int) -> TimeInterval {
     
-    if case NSTimeInterval.infinity = lhs {
+    if case TimeInterval.infinity = lhs {
         
-        return NSTimeInterval.infinity
+        return TimeInterval.infinity
     }
     
-    return lhs * NSTimeInterval(rhs)
+    return lhs * TimeInterval(rhs)
 }
 
 
-private extension SequenceType where Self.Generator.Element == LayerAnimation {
+private extension Sequence where Self.Iterator.Element == LayerAnimation {
     
-    var maxBaseDuration: NSTimeInterval {
+    var maxBaseDuration: TimeInterval {
         
         return self.reduce(0) { maxDuration($0, $1.baseDuration) }
     }
     
-    var maxAccumulatedDuration: NSTimeInterval {
+    var maxAccumulatedDuration: TimeInterval {
         
         return self.reduce(0) { maxDuration($0, $1.accumulatedDuration) }
     }
     
-    var totalBaseDuration: NSTimeInterval {
+    var totalBaseDuration: TimeInterval {
         
         return self.reduce(0) { addDuration($0, $1.baseDuration) }
     }
     
-    var totalAccumulatedDuration: NSTimeInterval {
+    var totalAccumulatedDuration: TimeInterval {
         
         return self.reduce(0) { addDuration($0, $1.accumulatedDuration) }
     }

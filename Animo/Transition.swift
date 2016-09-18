@@ -32,17 +32,17 @@ public enum Transition {
     
     public enum Direction {
         
-        case LeftToRight
-        case RightToLeft
-        case TopToBottom
-        case BottomToTop
+        case leftToRight
+        case rightToLeft
+        case topToBottom
+        case bottomToTop
     }
     
     
     // MARK: Public
     
-    case Fade
-    case MoveIn(Direction)
-    case Push(Direction)
-    case Reveal(Direction)
+    case fade
+    case moveIn(Direction)
+    case push(Direction)
+    case reveal(Direction)
 }

@@ -35,7 +35,7 @@ public struct Options {
     
     public static let Default = Options()
     
-    public struct FillMode: OptionSetType {
+    public struct FillMode: OptionSet {
         
         public static let Forwards = FillMode(rawValue: 1)
         public static let Backwards = FillMode(rawValue: 2)
@@ -52,7 +52,7 @@ public struct Options {
     
     public init(speed: CGFloat = 1, fillMode: FillMode = .Both, removedOnCompletion: Bool = false) {
         
-        func valueForCAAnimation(fillMode: FillMode) -> String {
+        func valueForCAAnimation(_ fillMode: FillMode) -> String {
             
             switch fillMode {
                 

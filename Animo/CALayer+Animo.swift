@@ -32,17 +32,17 @@ public extension CALayer {
     
     // MARK: Public
     
-    public func runAnimation(animation: LayerAnimation, forKey key: String = NSUUID().UUIDString) -> String {
+    public func runAnimation(_ animation: LayerAnimation, forKey key: String = UUID().uuidString) -> String {
         
-        self.addAnimation(animation.copyObject(), forKey: key)
+        self.add(animation.copyObject(), forKey: key)
         return key
     }
     
-    public func runAnimation(animation: LayerAnimation, forKey key: String = NSUUID().UUIDString, completion: () -> Void) -> String {
+    public func runAnimation(_ animation: LayerAnimation, forKey key: String = UUID().uuidString, completion: @escaping () -> Void) -> String {
         
         CATransaction.begin()
         CATransaction.setCompletionBlock(completion)
-        self.addAnimation(animation.copyObject(), forKey: key)
+        self.add(animation.copyObject(), forKey: key)
         CATransaction.commit()
         return key
     }
@@ -50,7 +50,7 @@ public extension CALayer {
     public func pauseAnimations() {
         
         self.speed = 0
-        self.timeOffset = self.convertTime(CACurrentMediaTime(), fromLayer: nil)
+        self.timeOffset = self.convertTime(CACurrentMediaTime(), from: nil)
     }
     
     public func resumeAnimations() {
@@ -58,14 +58,14 @@ public extension CALayer {
         self.resumeAnimationsAtSpeed(1)
     }
     
-    public func resumeAnimationsAtSpeed(newSpeed: Float) {
+    public func resumeAnimationsAtSpeed(_ newSpeed: Float) {
         
         let pausedTime = self.timeOffset
         
         guard pausedTime != 0 else {
             
             let currentTime = CACurrentMediaTime()
-            self.timeOffset = self.convertTime(currentTime, fromLayer: nil)
+            self.timeOffset = self.convertTime(currentTime, from: nil)
             self.beginTime = currentTime
             self.speed = newSpeed
             return
@@ -75,17 +75,17 @@ public extension CALayer {
         self.timeOffset = 0
         self.beginTime = 0
         
-        let elapsedTime = self.convertTime(CACurrentMediaTime(), fromLayer: nil) - pausedTime
+        let elapsedTime = self.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
         self.beginTime = elapsedTime
     }
     
-    public func runTransition(type: Transition = .Fade, duration: NSTimeInterval = 0, timingMode: TimingMode = .Linear, options: Options = Options(fillMode: [], removedOnCompletion: true)) {
+    public func runTransition(_ type: Transition = .fade, duration: TimeInterval = 0, timingMode: TimingMode = .linear, options: Options = Options(fillMode: [], removedOnCompletion: true)) {
         
         let transition = CATransition()
         type.applyTo(transition)
         transition.duration = duration
         transition.applyOptions(options)
         
-        self.addAnimation(transition, forKey: nil)
+        self.add(transition, forKey: nil)
     }
 }

@@ -34,10 +34,10 @@ internal extension CAAnimation {
     
     // MARK: Internal
     
-    internal func applyOptions(options: Options = .Default) {
+    internal func applyOptions(_ options: Options = .Default) {
         
         self.speed = Float(options.speed)
         self.fillMode = options.fillMode
-        self.removedOnCompletion = options.removedOnCompletion
+        self.isRemovedOnCompletion = options.removedOnCompletion
     }
 }
