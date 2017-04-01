@@ -296,7 +296,7 @@ extension CGFloat: FloatingPointKeyframeValueConvertible {
 
     public var degreesToRadians: CGFloat {
         
-        return CGFloat(M_PI * Double(self) / 180.0)
+        return CGFloat(Double.greatestFiniteMagnitude * Double(self) / 180.0)
     }
 }
 
@@ -304,7 +304,7 @@ extension Double: FloatingPointKeyframeValueConvertible {
     
     public var degreesToRadians: Double {
         
-        return M_PI * self / 180.0
+        return Double.pi * self / 180.0
     }
 }
 
@@ -312,7 +312,7 @@ extension Float: FloatingPointKeyframeValueConvertible {
     
     public var degreesToRadians: Float {
         
-        return Float(M_PI * Double(self) / 180.0)
+        return Float(Double.pi * Double(self) / 180.0)
     }
 }
 

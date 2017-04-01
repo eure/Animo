@@ -64,7 +64,7 @@ public struct LayerAnimation {
             )
             
         case .infinite:
-            object.duration = DBL_MAX
+            object.duration = .greatestFiniteMagnitude
             self.init(
                 object,
                 baseDuration: 0,
@@ -100,7 +100,7 @@ public struct LayerAnimation {
             let accumulatedDuration = children.maxAccumulatedDuration
             if case TimeInterval.infinity = accumulatedDuration {
                 
-                object.duration = DBL_MAX
+                object.duration = .greatestFiniteMagnitude
             }
             else {
                 
@@ -119,7 +119,7 @@ public struct LayerAnimation {
             self.init(object, baseDuration: seconds, accumulatedDuration: seconds)
             
         case .infinite:
-            object.duration = DBL_MAX
+            object.duration = .greatestFiniteMagnitude
             object.animations = children.map { $0.copyObject() }
             self.init(
                 object,
@@ -140,7 +140,7 @@ public struct LayerAnimation {
             let accumulatedDuration = children.totalAccumulatedDuration
             if case TimeInterval.infinity = accumulatedDuration {
                 
-                object.duration = DBL_MAX
+                object.duration = .greatestFiniteMagnitude
             }
             else {
                 
@@ -177,7 +177,7 @@ public struct LayerAnimation {
             )
             
         case .infinite:
-            object.duration = DBL_MAX
+            object.duration = .greatestFiniteMagnitude
             var baseDuration = TimeInterval(0)
             object.animations = children.map {
                 
@@ -217,7 +217,7 @@ public struct LayerAnimation {
         else {
             
             copy.repeatDuration = TimeInterval.infinity
-            object.duration = DBL_MAX
+            object.duration = .greatestFiniteMagnitude
             
             self.init(
                 object,
