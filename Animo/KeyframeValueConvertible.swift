@@ -212,7 +212,7 @@ extension NSRange: KeyframeValueConvertible {
 
 extension NSObject: KeyframeValueConvertible {
     
-    public var valueForAnimationKeyframe: AnyObject { return self }
+    @objc public dynamic var valueForAnimationKeyframe: AnyObject { return self }
 }
 
 #if os(OSX)
