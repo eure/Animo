@@ -187,7 +187,7 @@ extension CATransform3D: KeyframeValueConvertible {
 }
 
 #if os(OSX)
-    extension EdgeInsets: KeyframeValueConvertible {
+    extension NSEdgeInsets: KeyframeValueConvertible {
         
         public var valueForAnimationKeyframe: NSValue { return NSValue(edgeInsets: self) }
     }
