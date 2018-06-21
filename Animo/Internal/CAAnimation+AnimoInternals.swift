@@ -37,7 +37,7 @@ internal extension CAAnimation {
     internal func applyOptions(_ options: Options = .default) {
         
         self.speed = Float(options.speed)
-        self.fillMode = options.fillMode
+        self.fillMode = CAMediaTimingFillMode(rawValue: options.fillMode)
         self.isRemovedOnCompletion = options.removedOnCompletion
     }
 }
