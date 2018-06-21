@@ -56,10 +56,10 @@ public struct Options {
             
             switch fillMode {
                 
-            case FillMode.forwards: return kCAFillModeForwards
-            case FillMode.backwards: return kCAFillModeBackwards
-            case FillMode.both: return kCAFillModeBoth
-            default: return kCAFillModeRemoved
+            case FillMode.forwards: return CAMediaTimingFillMode.forwards.rawValue
+            case FillMode.backwards: return CAMediaTimingFillMode.backwards.rawValue
+            case FillMode.both: return CAMediaTimingFillMode.both.rawValue
+            default: return CAMediaTimingFillMode.removed.rawValue
             }
         }
         
