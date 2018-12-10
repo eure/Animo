@@ -296,7 +296,7 @@ extension CGFloat: FloatingPointKeyframeValueConvertible {
 
     public var degreesToRadians: CGFloat {
         
-        return CGFloat(Double.greatestFiniteMagnitude * Double(self) / 180.0)
+        return CGFloat(Double.pi * Double(self) / 180.0)
     }
 }
 
