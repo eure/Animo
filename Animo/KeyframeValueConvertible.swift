@@ -233,18 +233,18 @@ extension NSObject: KeyframeValueConvertible {
                 var points = Array<CGPoint>(repeating: .zero, count: 3)
                 switch self.element(at: index, associatedPoints: &points) {
                     
-                case .moveToBezierPathElement:
+                case .moveTo:
                     path.move(to: points[0])
                     
-                case .lineToBezierPathElement:
+                case .lineTo:
                     path.addLine(to: points[0])
                     didClosePath = false
                     
-                case .curveToBezierPathElement:
+                case .curveTo:
                     path.addCurve(to: points[0], control1: points[1], control2: points[2])
                     didClosePath = false
                     
-                case .closePathBezierPathElement:
+                case .closePath:
                     path.closeSubpath()
                     didClosePath = true
                 }
@@ -296,7 +296,7 @@ extension CGFloat: FloatingPointKeyframeValueConvertible {
 
     public var degreesToRadians: CGFloat {
         
-        return CGFloat(Double.greatestFiniteMagnitude * Double(self) / 180.0)
+        return CGFloat(Double.pi * Double(self) / 180.0)
     }
 }
 

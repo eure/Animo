@@ -40,30 +40,30 @@ internal extension Transition {
             
             switch direction {
                 
-            case .leftToRight:  return kCATransitionFromLeft
-            case .rightToLeft:  return kCATransitionFromRight
-            case .topToBottom:  return kCATransitionFromTop
-            case .bottomToTop:  return kCATransitionFromBottom
+            case .leftToRight:  return CATransitionSubtype.fromLeft.rawValue
+            case .rightToLeft:  return CATransitionSubtype.fromRight.rawValue
+            case .topToBottom:  return CATransitionSubtype.fromTop.rawValue
+            case .bottomToTop:  return CATransitionSubtype.fromBottom.rawValue
             }
         }
         
         switch self {
             
         case .fade:
-            object.type = kCATransitionFade
+            object.type = CATransitionType.fade
             object.subtype = nil
             
         case .moveIn(let direction):
-            object.type = kCATransitionMoveIn
-            object.subtype = subtypeForCATransition(direction)
+            object.type = CATransitionType.moveIn
+            object.subtype = CATransitionSubtype(rawValue: subtypeForCATransition(direction))
             
         case .push(let direction):
-            object.type = kCATransitionPush
-            object.subtype = subtypeForCATransition(direction)
+            object.type = CATransitionType.push
+            object.subtype = CATransitionSubtype(rawValue: subtypeForCATransition(direction))
             
         case .reveal(let direction):
-            object.type = kCATransitionReveal
-            object.subtype = subtypeForCATransition(direction)
+            object.type = CATransitionType.reveal
+            object.subtype = CATransitionSubtype(rawValue: subtypeForCATransition(direction))
         }
     }
 }
