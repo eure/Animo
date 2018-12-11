@@ -57,10 +57,10 @@ public enum TimingMode {
         
         switch self {
             
-        case .linear:       return CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-        case .easeIn:       return CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
-        case .easeOut:      return CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-        case .easeInOut:    return CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        case .linear:       return CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        case .easeIn:       return CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
+        case .easeOut:      return CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        case .easeInOut:    return CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         case .spring(let damping):    return CAMediaTimingFunction(controlPoints: 0.5, 1.1 + (Float(damping) / 3.0), 1, 1)
         case .discrete:       return CAMediaTimingFunction(controlPoints: 1, 0, 1, 1)
             
