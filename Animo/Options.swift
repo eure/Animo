@@ -56,10 +56,10 @@ public struct Options {
             
             switch fillMode {
                 
-            case FillMode.forwards: return kCAFillModeForwards
-            case FillMode.backwards: return kCAFillModeBackwards
-            case FillMode.both: return kCAFillModeBoth
-            default: return kCAFillModeRemoved
+            case FillMode.forwards: return convertFromCAMediaTimingFillMode(CAMediaTimingFillMode.forwards)
+            case FillMode.backwards: return convertFromCAMediaTimingFillMode(CAMediaTimingFillMode.backwards)
+            case FillMode.both: return convertFromCAMediaTimingFillMode(CAMediaTimingFillMode.both)
+            default: return convertFromCAMediaTimingFillMode(CAMediaTimingFillMode.removed)
             }
         }
         
@@ -74,4 +74,9 @@ public struct Options {
     internal let speed: CGFloat
     internal let fillMode: String
     internal let removedOnCompletion: Bool
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromCAMediaTimingFillMode(_ input: CAMediaTimingFillMode) -> String {
+	return input.rawValue
 }
