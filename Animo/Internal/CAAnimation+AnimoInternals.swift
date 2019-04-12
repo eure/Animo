@@ -37,7 +37,12 @@ internal extension CAAnimation {
     internal func applyOptions(_ options: Options = .default) {
         
         self.speed = Float(options.speed)
-        self.fillMode = options.fillMode
+        self.fillMode = convertToCAMediaTimingFillMode(options.fillMode)
         self.isRemovedOnCompletion = options.removedOnCompletion
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToCAMediaTimingFillMode(_ input: String) -> CAMediaTimingFillMode {
+	return CAMediaTimingFillMode(rawValue: input)
 }
